@@ -179,6 +179,11 @@
         </div>
 
         <div class="input-group">
+            <label>اسم الجامعة / University Name</label>
+            <input type="text" id="uni" placeholder="جامعة القاهرة - Cairo University" oninput="updateText('uni', this.value)">
+        </div>
+
+        <div class="input-group">
             <label>شعار النقابة (رسمي)</label>
             <input type="file" id="logo-input" accept="image/*" onchange="loadImage(event, 'logo-preview')">
         </div>
@@ -295,7 +300,7 @@
                 </div>
 
                 <div class="data-grid">
-                    <div class="data-item" style="grid-column: span 2; background: rgba(123, 0, 0, 0.03); padding: 12px; border-radius: 4px;">
+                    <div class="data-item" style="grid-column: span 2; background: rgba(123, 0, 0, 0.03); padding: 12px; border-radius: 4px; margin-bottom: 5px;">
                         <div class="label-pair">
                             <span class="label-ar">الدرجة المهنية والتخصص</span>
                             <span class="label-en">Professional Rank & Specialization</span>
@@ -319,12 +324,23 @@
 
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم القيد ورتبته</span>
-                            <span class="label-en">Registration No. & Rank</span>
+                            <span class="label-ar">تاريخ انتهاء التصريح</span>
+                            <span class="label-en">Permit Date of Expiry</span>
                         </div>
                         <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-r-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-r-no-en">---</span>
+                            <span class="value-ar value-num-ar" id="view-expiry-date-ar" style="color: #d32f2f; font-size: 12pt;">--/--/----</span>
+                            <span class="value-en value-num-en" id="view-expiry-date-en" style="color: #d32f2f; font-size: 10pt;">--/--/----</span>
+                        </div>
+                    </div>
+
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">رقم الهوية الوطنية</span>
+                            <span class="label-en">National ID Number</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
                         </div>
                     </div>
 
@@ -341,17 +357,6 @@
 
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم الهوية الوطنية</span>
-                            <span class="label-en">National ID Number</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
-                        </div>
-                    </div>
-
-                    <div class="data-item" style="grid-column: span 2;">
-                        <div class="label-pair">
                             <span class="label-ar">المؤهل الدراسي</span>
                             <span class="label-en">Academic Qualification</span>
                         </div>
@@ -361,29 +366,22 @@
                         </div>
                     </div>
 
-
-                    <div class="data-item" style="border-bottom: 2px solid #d32f2f; grid-column: span 2;">
+                    <div class="data-item" style="border-bottom: 2px solid var(--secondary-green);">
                         <div class="label-pair">
-                            <span class="label-ar">تاريخ انتهاء التصريح</span>
-                            <span class="label-en">Permit Date of Expiry</span>
+                            <span class="label-ar">اسم الجامعة</span>
+                            <span class="label-en">University Name</span>
                         </div>
                         <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-expiry-date-ar" style="color: #d32f2f; font-size: 13pt;">--/--/----</span>
-                            <span class="value-en value-num-en" id="view-expiry-date-en" style="color: #d32f2f; font-size: 11pt;">--/--/----</span>
+                            <span class="value-ar" id="view-uni-ar">---</span>
+                            <span class="value-en" id="view-uni-en">---</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="legal-text">
-                    تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد رسمياً بسجلاتنا ومصرّح له بمزاولة المهنة في التخصص الموضح أعلاه، وذلك وفقاً للأنظمة المعمول بها واللوائح التنفيذية المحدثة الصادرة قبل تاريخ الانتهاء الموضح.
+                    تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد رسمياً بسجلاتنا ومصرّح له بمزاولة المهنة في حدود تخصصه المهني المرخص له وفقاً للأنظمة واللوائح التنفيذية المعتمدة، مع التأكيد على حظر ممارسة الطب أو إجراء أي تشخيص أو علاج طبي خارج نطاق التخصص، ويلتزم حامل التصريح بالعمل ضمن حدود تخصصه المسجل وفقاً للمعايير الأخلاقية والقانونية للمهنة.
                     <br>
-                    <small style="direction: ltr; display: block; text-align: left; margin-top: 2px;">The Injuries and Rehabilitation Syndicate certifies that the individual is officially registered in its records as a licensed practitioner in the specified specialty, in accordance with the applicable regulations and updated executive bylaws issued prior to the indicated expiration date.</small>
-
-                    <div style="margin-top: 10px; border-top: 1px solid #ddd; padding-top: 5px;">
-                        يقر حامل هذا التصريح بأنه غير مخول بممارسة الطب أو أي تشخيص أو علاج طبي خارج نطاق تخصصه المهني المرخص له، ويجب أن تقتصر جميع الممارسات ضمن حدود تخصصه المسجل وفقاً للمعايير الأخلاقية والقانونية للمهنة.
-                        <br>
-                        <small style="direction: ltr; display: block; text-align: left; margin-top: 2px;">The holder of this permit is not authorized to practice medicine or any medical diagnosis or treatment beyond their licensed professional scope. All practice must remain within the boundaries of their registered specialty, in accordance with ethical and legal standards of the profession.</small>
-                    </div>
+                    <small style="direction: ltr; display: block; text-align: left; margin-top: 5px;">The Injuries and Rehabilitation Syndicate certifies that the individual is officially registered in its records and is authorized to practice the profession within the scope of their licensed specialty, in accordance with applicable regulations and approved executive bylaws. The holder is strictly prohibited from practicing medicine, making medical diagnoses, or providing any form of medical treatment outside the boundaries of their certified professional scope, and all professional activity must remain within the limits of their registered specialization in compliance with ethical and legal standards.</small>
                 </div>
 
                 <div class="footer-assets">
@@ -426,6 +424,14 @@
         function updateText(id, val) {
             const targetAr = document.getElementById('view-' + id + '-ar');
             const targetEn = document.getElementById('view-' + id + '-en');
+
+            // Handle split values for specific fields (University, Branch) if they contain " - "
+            if (val.includes(" - ")) {
+                const parts = val.split(" - ");
+                if (targetAr) targetAr.innerText = parts[0];
+                if (targetEn) targetEn.innerText = parts[1];
+                return;
+            }
 
             if (val.trim() === "") {
                 if (targetAr) targetAr.innerText = "---";
