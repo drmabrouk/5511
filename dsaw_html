@@ -57,10 +57,10 @@
             display: flex; flex-direction: column;
         }
 
-        /* --- الخلفية المائية بنمط الأمواج الانسيابية (Wave-style Watermark) --- */
+        /* --- الخلفية المائية بنمط الأمواج الانسيابية (Dual-Level Security Watermark) --- */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.008' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.008' /></linearGradient></defs><path d='M-100,200 C200,100 400,300 600,200 S900,100 1100,200' fill='none' stroke='url(%23g)' stroke-width='1.2'/><path d='M-100,500 C100,600 500,400 700,500 S1000,600 1100,500' fill='none' stroke='url(%23g)' stroke-width='1.2'/><path d='M-100,800 C300,700 600,900 1100,800' fill='none' stroke='url(%23g)' stroke-width='1.2'/><text x='100' y='100' transform='rotate(-20 100,100)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='700' y='150' transform='rotate(15 700,150)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='400' y='400' transform='rotate(-10 400,400)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='800' y='600' transform='rotate(25 800,600)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='200' y='750' transform='rotate(-15 200,750)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='600' y='900' transform='rotate(10 600,900)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text></svg>");
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.003' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.003' /></linearGradient></defs><path d='M-100,150 C150,50 350,250 550,150 S850,50 1100,150' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,350 C100,450 500,250 700,350 S1000,450 1100,350' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,550 C250,450 550,650 1100,550' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,750 C150,850 450,650 750,750 S1000,850 1100,750' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,950 C300,850 600,1050 1100,950' fill='none' stroke='url(%23g)' stroke-width='1'/><g fill='black' font-family='Arial' font-size='8' fill-opacity='0.003'><text x='100' y='100' transform='rotate(-15)'>Injuries and Rehabilitation Syndicate</text><text x='600' y='150' transform='rotate(10)'>Injuries and Rehabilitation Syndicate</text><text x='300' y='400' transform='rotate(-5)'>Injuries and Rehabilitation Syndicate</text><text x='700' y='600' transform='rotate(15)'>Injuries and Rehabilitation Syndicate</text><text x='200' y='800' transform='rotate(-10)'>Injuries and Rehabilitation Syndicate</text><text x='500' y='900' transform='rotate(5)'>Injuries and Rehabilitation Syndicate</text></g><g id='clusters' fill='black' font-family='Arial' font-size='6'><!-- Cluster 1: Member Name Zone --><text x='500' y='320' text-anchor='middle' transform='rotate(-2 500,320)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><text x='500' y='328' text-anchor='middle' transform='rotate(-2 500,328)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='500' y='336' text-anchor='middle' transform='rotate(-2 500,336)' fill-opacity='0.009'>Injuries and Rehabilitation Syndicate</text><!-- Cluster 2: Data Grid Zones --><text x='250' y='550' text-anchor='middle' transform='rotate(-20 250,550)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='250' y='558' text-anchor='middle' transform='rotate(-20 250,558)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><text x='750' y='550' text-anchor='middle' transform='rotate(20 750,550)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='750' y='558' text-anchor='middle' transform='rotate(20 750,558)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><!-- Cluster 3: Footer/Signature Zone --><text x='800' y='920' text-anchor='middle' transform='rotate(5 800,920)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><text x='800' y='928' text-anchor='middle' transform='rotate(5 800,928)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='800' y='936' text-anchor='middle' transform='rotate(5 800,936)' fill-opacity='0.009'>Injuries and Rehabilitation Syndicate</text></g></svg>");
             background-size: cover;
             pointer-events: none; z-index: 1;
         }
@@ -181,18 +181,7 @@
         <div class="input-group">
             <label>اسم الجامعة / University Name</label>
             <select id="uni" onchange="updateText('uni', this.value)">
-                <option value="">اختر الجامعة...</option>
-                <option value="جامعة القاهرة - Cairo University">جامعة القاهرة - Cairo University</option>
-                <option value="جامعة المنصورة - Mansoura University">جامعة المنصورة - Mansoura University</option>
-                <option value="جامعة الزقازيق - Zagazig University">جامعة الزقازيق - Zagazig University</option>
-                <option value="جامعة المنوفية - Menoufia University">جامعة المنوفية - Menoufia University</option>
-                <option value="جامعة المنيا - Minia University">جامعة المنيا - Minia University</option>
-                <option value="جامعة حلوان - Helwan University">جامعة حلوان - Helwan University</option>
-                <option value="جامعة الإسكندرية - Alexandria University">جامعة الإسكندرية - Alexandria University</option>
-                <option value="جامعة أسيوط - Assiut University">جامعة أسيوط - Assiut University</option>
-                <optgroup label="خيار إضافي">
-                    <option value="جامعة دولية - International University">جامعة دولية - International University</option>
-                </optgroup>
+                <option value="">جاري التحميل...</option>
             </select>
         </div>
 
@@ -214,44 +203,28 @@
         <div class="input-group">
             <label>المؤهل الدراسي / Academic Qualification</label>
             <select id="qual" onchange="updateQualInfo()">
-                <option value="">اختر المؤهل...</option>
-                <option value="بكالوريوس في علوم الرياضة | Bachelor of Sports Sciences">بكالوريوس في علوم الرياضة | Bachelor of Sports Sciences</option>
-                <option value="ماجستير في علوم الرياضة – الصحة الرياضية | Master of Sports Sciences – Sports Health">ماجستير في علوم الرياضة – الصحة الرياضية | Master of Sports Sciences – Sports Health</option>
-                <option value="دكتوراه في علوم الرياضة – الصحة الرياضية | PhD in Sports Sciences – Sports Health">دكتوراه في علوم الرياضة – الصحة الرياضية | PhD in Sports Sciences – Sports Health</option>
+                <option value="">جاري التحميل...</option>
             </select>
         </div>
 
         <div class="input-group">
             <label>الدرجة المهنية / Professional Rank</label>
             <select id="rank" onchange="updateRankAndSpec()">
-                <option value="">اختر الدرجة...</option>
-                <option value="أخصائي مساعد طبي - Medical Assistant Specialist">أخصائي مساعد طبي - Medical Assistant Specialist</option>
-                <option value="أخصائي - Specialist">أخصائي - Specialist</option>
-                <option value="استشاري - Consultant">استشاري - Consultant</option>
-                <option value="خبير - Expert">خبير - Expert</option>
+                <option value="">جاري التحميل...</option>
             </select>
         </div>
 
         <div class="input-group">
             <label>التخصص / Specialization</label>
             <select id="spec" onchange="updateRankAndSpec()">
-                <option value="">اختر التخصص...</option>
-                <option value="الإصابات الرياضية والتأهيل - Sports Injuries and Rehabilitation">الإصابات الرياضية والتأهيل - Sports Injuries and Rehabilitation</option>
-                <option value="التغذية الرياضية - Sports Nutrition">التغذية الرياضية - Sports Nutrition</option>
-                <option value="العلاج بالتدليك الرياضي - Sports Massage Therapy">العلاج بالتدليك الرياضي - Sports Massage Therapy</option>
-                <option value="التأهيل المائي - Aquatic Rehabilitation">التأهيل المائي - Aquatic Rehabilitation</option>
-                <option value="الفسيولوجيا الرياضية - Sports Physiology">الفسيولوجيا الرياضية - Sports Physiology</option>
+                <option value="">جاري التحميل...</option>
             </select>
         </div>
 
         <div class="input-group">
             <label>فرع النقابة / Syndicate Branch</label>
             <select id="branch" onchange="updateBranch(this.value)">
-                <option value="">اختر الفرع...</option>
-                <option value="القاهرة - Cairo">القاهرة - Cairo</option>
-                <option value="المنوفية - Monufia">المنوفية - Monufia</option>
-                <option value="الإسكندرية - Alexandria">الإسكندرية - Alexandria</option>
-                <option value="الجيزة - Giza">الجيزة - Giza</option>
+                <option value="">جاري التحميل...</option>
             </select>
         </div>
 
@@ -437,6 +410,107 @@
     </div>
 
     <script>
+        // سجل البيانات الموحد للجامعات والدرجات والمؤهلات
+        const DATA_REGISTRY = {
+            universities: [
+                { ar: "جامعة القاهرة", en: "Cairo University" },
+                { ar: "جامعة حلوان", en: "Helwan University" },
+                { ar: "جامعة الإسكندرية", en: "Alexandria University" },
+                { ar: "جامعة المنصورة", en: "Mansoura University" },
+                { ar: "جامعة الزقازيق", en: "Zagazig University" },
+                { ar: "جامعة طنطا", en: "Tanta University" },
+                { ar: "جامعة المنوفية", en: "Menoufia University" },
+                { ar: "جامعة المنيا", en: "Minia University" },
+                { ar: "جامعة أسيوط", en: "Assiut University" },
+                { ar: "جامعة بني سويف", en: "Beni Suef University" },
+                { ar: "جامعة بنها", en: "Benha University" },
+                { ar: "جامعة كفر الشيخ", en: "Kafr El-Sheikh University" },
+                { ar: "جامعة سوهاج", en: "Sohag University" },
+                { ar: "جامعة جنوب الوادي", en: "South Valley University" },
+                { ar: "جامعة قناة السويس", en: "Suez Canal University" },
+                { ar: "جامعة بورسعيد", en: "Port Said University" },
+                { ar: "جامعة دمياط", en: "Damietta University" },
+                { ar: "جامعة أسوان", en: "Aswan University" },
+                { ar: "جامعة مدينة السادات", en: "University of Sadat City" },
+                { ar: "جامعة السويس", en: "Suez University" },
+                { ar: "جامعة العريش", en: "Arish University" },
+                { ar: "جامعة الوادي الجديد", en: "New Valley University" },
+                { ar: "جامعة مطروح", en: "Matrouh University" },
+                { ar: "جامعة الأقصر", en: "Luxor University" },
+                { ar: "جامعة دمنهور", en: "Damanhour University" },
+                { ar: "جامعة الفيوم", en: "Fayoum University" },
+                { ar: "جامعة دولية", en: "International University" }
+            ],
+            branches: [
+                { ar: "القاهرة", en: "Cairo" },
+                { ar: "الجيزة", en: "Giza" },
+                { ar: "الإسكندرية", en: "Alexandria" },
+                { ar: "الدقهلية", en: "Dakahlia" },
+                { ar: "البحر الأحمر", en: "Red Sea" },
+                { ar: "البحيرة", en: "Beheira" },
+                { ar: "الفيوم", en: "Fayoum" },
+                { ar: "الغربية", en: "Gharbia" },
+                { ar: "الإسماعيلية", en: "Ismailia" },
+                { ar: "المنوفية", en: "Monufia" },
+                { ar: "المنيا", en: "Minya" },
+                { ar: "القليوبية", en: "Qalyubia" },
+                { ar: "الوادي الجديد", en: "New Valley" },
+                { ar: "الشرقية", en: "Sharqia" },
+                { ar: "السويس", en: "Suez" },
+                { ar: "أسوان", en: "Aswan" },
+                { ar: "أسيوط", en: "Assiut" },
+                { ar: "بني سويف", en: "Bani Suef" },
+                { ar: "دمياط", en: "Damietta" },
+                { ar: "كفر الشيخ", en: "Kafr El Sheikh" },
+                { ar: "مطروح", en: "Matrouh" },
+                { ar: "بورسعيد", en: "Port Said" },
+                { ar: "سوهاج", en: "Sohag" },
+                { ar: "جنوب سيناء", en: "South Sinai" },
+                { ar: "شمال سيناء", en: "North Sinai" },
+                { ar: "الأقصر", en: "Luxor" },
+                { ar: "قنا", en: "Qena" }
+            ],
+            qualifications: [
+                { ar: "بكالوريوس في علوم الرياضة", en: "Bachelor of Sports Sciences" },
+                { ar: "دبلوم الدراسات العليا في علوم الرياضة", en: "Post-Graduate Diploma in Sports Sciences" },
+                { ar: "ماجستير في علوم الرياضة", en: "Master of Sports Sciences" },
+                { ar: "دكتوراه في علوم الرياضة", en: "PhD in Sports Sciences" }
+            ],
+            ranks: [
+                { ar: "مساعد أخصائي", en: "Assistant Specialist" },
+                { ar: "أخصائي", en: "Specialist" },
+                { ar: "استشاري", en: "Consultant" },
+                { ar: "خبير", en: "Expert" }
+            ],
+            specializations: [
+                { ar: "الإصابات الرياضية والتأهيل", en: "Sports Injuries and Rehabilitation" },
+                { ar: "التغذية الرياضية", en: "Sports Nutrition" },
+                { ar: "العلاج بالتدليك الرياضي", en: "Sports Massage Therapy" },
+                { ar: "التأهيل المائي", en: "Aquatic Rehabilitation" },
+                { ar: "الفسيولوجيا الرياضية", en: "Sports Physiology" }
+            ]
+        };
+
+        // دالة ملء القوائم المنسدلة ديناميكياً
+        function populateDropdowns() {
+            const populate = (id, items, separator = " - ", defaultText = "اختر...") => {
+                const select = document.getElementById(id);
+                select.innerHTML = `<option value="">${defaultText}</option>`;
+                items.forEach(item => {
+                    const opt = document.createElement("option");
+                    opt.value = `${item.ar}${separator}${item.en}`;
+                    opt.innerText = `${item.ar} - ${item.en}`;
+                    select.appendChild(opt);
+                });
+            };
+
+            populate("uni", DATA_REGISTRY.universities);
+            populate("branch", DATA_REGISTRY.branches);
+            populate("qual", DATA_REGISTRY.qualifications, " | ");
+            populate("rank", DATA_REGISTRY.ranks);
+            populate("spec", DATA_REGISTRY.specializations);
+        }
+
         // دالة تحويل الأرقام إلى الأرقام العربية (المشرقية)
         function toArabicDigits(num) {
             const id = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -544,6 +618,7 @@
 
         // الأتمتة الزمنية عند تحميل الصفحة
         window.onload = function() {
+            populateDropdowns();
             const today = new Date();
             const expiry = new Date();
             expiry.setFullYear(today.getFullYear() + 1);
