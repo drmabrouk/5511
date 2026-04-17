@@ -101,6 +101,7 @@
         .member-name-zone { text-align: center; margin-bottom: 15px; position: relative; padding: 5px 0; }
         #view-name-ar { font-size: 19pt; font-weight: 800; color: #000; font-family: 'Tajawal', sans-serif; }
         #view-name-en { font-size: 13pt; color: #444; margin-top: 5px; font-family: 'Cambria', serif; font-weight: 400; font-style: italic; }
+        .member-qual-zone { font-size: 10pt; color: #555; margin-top: 8px; font-weight: 500; }
 
         /* شبكة البيانات الفنية */
         .data-grid {
@@ -187,14 +188,25 @@
             <input type="text" id="name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateText('view-name-en', this.value)">
         </div>
 
+        <div class="row-inputs">
+            <div class="input-group">
+                <label>المؤهل الدراسي / Qualification</label>
+                <input type="text" id="qual" placeholder="بكالوريوس العلاج الطبيعي" oninput="updateQualInfo()">
+            </div>
+            <div class="input-group">
+                <label>اسم الجامعة / University</label>
+                <input type="text" id="univ" placeholder="جامعة القاهرة" oninput="updateQualInfo()">
+            </div>
+        </div>
+
         <div class="input-group">
             <label>الدرجة المهنية / Professional Rank</label>
             <select id="rank" onchange="updateRank(this.value)">
                 <option value="">اختر الدرجة...</option>
-                <option value="مهندس استشاري | Consultant Engineer">مهندس استشاري | Consultant Engineer</option>
-                <option value="مهندس أخصائي | Specialist Engineer">مهندس أخصائي | Specialist Engineer</option>
-                <option value="مهندس ممارس | Practitioner Engineer">مهندس ممارس | Practitioner Engineer</option>
-                <option value="محاسب قانوني | Chartered Accountant">محاسب قانوني | Chartered Accountant</option>
+                <option value="أخصائي مساعد طبي | Medical Assistant Specialist">أخصائي مساعد طبي | Medical Assistant Specialist</option>
+                <option value="أخصائي | Specialist">أخصائي | Specialist</option>
+                <option value="استشاري | Consultant">استشاري | Consultant</option>
+                <option value="خبير | Expert">خبير | Expert</option>
             </select>
         </div>
 
@@ -226,6 +238,11 @@
         </div>
 
         <div class="input-group">
+            <label>رقم الهوية الوطنية / National ID Number</label>
+            <input type="text" id="nid-no" maxlength="14" placeholder="29001011234567" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateText('view-nid-no', this.value)">
+        </div>
+
+        <div class="input-group">
             <label>رمز التحقق الرقمي (QR Code)</label>
             <input type="file" id="qr-input" accept="image/*" onchange="loadImage(event, 'qr-preview')">
         </div>
@@ -251,7 +268,6 @@
                         <strong>جمهورية مصر العربية</strong><br>
                         نقابة الإصابات والتأهيل<br>
                         <span id="view-branch-ar" style="font-weight: bold; color: var(--secondary-green);"></span><br>
-                        الإدارة العامة للتراخيص المهنية
                     </div>
                     <div class="logo-area">
                         <img id="logo-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'> <circle cx='50' cy='50' r='45' stroke='%237b0000' stroke-width='2' fill='none'/><path d='M30 70 L50 30 L70 70 M50 30 L50 70' stroke='%23004d40' stroke-width='3' fill='none'/></svg>" alt="Logo">
@@ -260,7 +276,6 @@
                         <strong>Arab Republic of Egypt</strong><br>
                         Injuries and Rehabilitation Syndicate<br>
                         <span id="view-branch-en" style="font-weight: bold; color: var(--secondary-green);"></span><br>
-                        General Dept. of Professional Licensure
                     </div>
                 </div>
 
@@ -272,6 +287,7 @@
                 <div class="member-name-zone">
                     <div id="view-name-ar">اسم العضو الكريم الرباعي</div>
                     <div id="view-name-en">Member Full English Name</div>
+                    <div class="member-qual-zone" id="view-qual-info"></div>
                 </div>
 
                 <div class="data-grid">
@@ -309,11 +325,12 @@
 
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">تاريخ صلاحية العضوية</span>
-                            <span class="label-en">Membership Validity</span>
+                            <span class="label-ar">رقم الهوية الوطنية</span>
+                            <span class="label-en">National ID Number</span>
                         </div>
-                        <span class="value" id="view-mem-expiry">--/--/----</span>
+                        <span class="value" id="view-nid-no">---</span>
                     </div>
+
 
                     <div class="data-item" style="border-bottom: 2px solid #d32f2f; grid-column: span 2;">
                         <div class="label-pair">
@@ -375,6 +392,19 @@
             document.getElementById('view-rank').innerText = val || '---';
         }
 
+        // تحديث معلومات المؤهل والجامعة
+        function updateQualInfo() {
+            const qual = document.getElementById('qual').value;
+            const univ = document.getElementById('univ').value;
+            const target = document.getElementById('view-qual-info');
+
+            if (qual || univ) {
+                target.innerText = `${qual}${qual && univ ? ' - ' : ''}${univ}`;
+            } else {
+                target.innerText = '';
+            }
+        }
+
         // تحديث فرع النقابة في الهيدر
         function updateBranch(val) {
             const arSpan = document.getElementById("view-branch-ar");
@@ -419,7 +449,6 @@
             };
 
             document.getElementById('view-expiry-date').innerText = formatDate(expiry);
-            document.getElementById('view-mem-expiry').innerText = formatDate(memExpiry);
         };
     </script>
 </body>
