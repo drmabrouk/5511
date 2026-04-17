@@ -19,30 +19,72 @@
 
         /* --- لوحة التحكم (Sidebar) --- */
         .sidebar {
-            width: 380px; min-width: 380px; background: #fff; padding: 20px;
-            box-shadow: 4px 0 15px rgba(0,0,0,0.05); overflow-y: auto; z-index: 10;
-            display: flex; flex-direction: column;
+            width: 400px; min-width: 400px; background: #fff; padding: 0;
+            box-shadow: 4px 0 15px rgba(0,0,0,0.05); z-index: 10;
+            display: flex; flex-direction: column; height: 100vh;
         }
 
-        .sidebar-header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
+        .sidebar-header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #eee; padding: 20px; }
         .sidebar-header h2 { color: var(--primary-dark); margin: 0; font-size: 1.3rem; font-weight: 800; }
         .sidebar-header p { color: #666; margin: 5px 0 0; font-size: 0.9rem; }
 
-        .input-group { margin-bottom: 12px; }
-        .input-group label { display: block; margin-bottom: 4px; font-weight: 500; font-size: 0.85rem; color: #444; }
-        .input-group input, .input-group select {
-            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Tajawal'; font-size: 0.9rem; transition: 0.2s;
-        }
-        .input-group input:focus, .input-group select:focus { border-color: var(--secondary-green); outline: none; box-shadow: 0 0 0 3px rgba(0,77,64,0.1); }
+        #certForm { padding: 0 20px 20px; overflow-y: auto; flex-grow: 1; scrollbar-width: thin; }
 
-        .row-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        fieldset {
+            border: 1.5px solid #f0f0f0; border-radius: 12px; padding: 18px; margin-bottom: 1.5rem; background: #fafafa;
+        }
+
+        legend {
+            font-size: 0.75rem; font-weight: 700; color: var(--primary-dark); padding: 2px 12px;
+            background: #fff; border: 1.5px solid #f0f0f0; border-radius: 20px; text-transform: uppercase;
+        }
+
+        .input-group { margin-bottom: 1.2rem; }
+        .input-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.85rem; color: #444; }
+
+        .input-group input, .input-group select {
+            width: 100%; height: 44px; padding: 10px 14px; border: 1.5px solid #ddd; border-radius: 8px;
+            font-family: 'Tajawal'; font-size: 0.95rem; transition: all 0.2s ease; background: #fff;
+        }
+
+        .input-group input:focus, .input-group select:focus {
+            border-color: var(--primary-dark); outline: none; box-shadow: 0 0 0 3px rgba(123, 0, 0, 0.1);
+        }
+
+        .input-group input:focus-visible, .input-group select:focus-visible {
+            outline: 3px solid var(--primary-dark); outline-offset: 2px;
+        }
+
+        .row-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+        .form-note {
+            margin: 10px 0; font-size: 0.85rem; color: #666; background: #fff3f3;
+            padding: 12px; border-radius: 8px; border: 1px solid #ffcccc;
+        }
+
+        .sidebar-footer {
+            padding: 20px; background: #fff; border-top: 2px solid #f0f0f0; position: sticky; bottom: 0;
+            display: flex; gap: 12px;
+        }
 
         .btn-print {
-            width: 100%; padding: 15px; background: var(--primary-dark); color: white; border: none;
-            border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem; margin-top: auto; transition: 0.3s;
+            width: 100%; padding: 14px; background: var(--primary-dark); color: white; border: none;
+            border-radius: 8px; cursor: pointer; font-weight: 800; font-size: 1.05rem; transition: 0.3s;
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 4px 6px rgba(123, 0, 0, 0.1);
         }
-        .btn-print:hover { background: #4a0000; transform: translateY(-2px); }
+        .btn-print:hover { background: #4a0000; transform: translateY(-2px); box-shadow: 0 6px 12px rgba(123, 0, 0, 0.2); }
+        .btn-print:active { transform: translateY(0); }
+
+        .btn-reset {
+            padding: 14px; background: #fff; color: #666; border: 1.5px solid #dcdcdc;
+            border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 0.95rem; transition: 0.3s;
+            flex: 0 0 100px; text-align: center;
+        }
+        .btn-reset:hover { background: #f9f9f9; border-color: #bbb; color: #333; }
+
+        input:invalid { border-color: #ff4d4d; }
+        input:invalid:focus { outline-color: #ff4d4d; }
 
         /* --- منطقة المعاينة (Preview) --- */
         .preview-area {
@@ -55,6 +97,18 @@
             width: 210mm; height: 297mm; background: white; position: relative;
             box-shadow: 0 0 35px rgba(0,0,0,0.25); overflow: hidden;
             display: flex; flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        /* Responsive Scaling */
+        @media screen and (max-width: 1300px) {
+            .a4-page { transform: scale(0.8); transform-origin: top center; margin-top: -100px; }
+        }
+        @media screen and (max-width: 1100px) {
+            .a4-page { transform: scale(0.65); margin-top: -200px; }
+        }
+        @media screen and (max-width: 900px) {
+            .a4-page { transform: scale(0.5); margin-top: -300px; }
         }
 
         /* --- الخلفية المائية بنمط الأمواج الانسيابية (Dual-Level Security Watermark) --- */
@@ -178,90 +232,109 @@
             <p>أدخل البيانات بدقة لإنشاء المستند</p>
         </div>
 
-        <div class="input-group">
-            <label>اسم الجامعة / University Name</label>
-            <select id="uni" onchange="updateText('uni', this.value)">
-                <option value="">جاري التحميل...</option>
-            </select>
-        </div>
+        <form id="certForm">
+            <fieldset>
+                <legend>بيانات المؤسسة والشعار / Institution & Branding</legend>
+                <div class="input-group">
+                    <label for="uni">اسم الجامعة / University Name</label>
+                    <select id="uni" onchange="updateText('uni', this.value)" aria-required="true">
+                        <option value="">جاري التحميل...</option>
+                    </select>
+                </div>
 
-        <div class="input-group">
-            <label>شعار النقابة (رسمي)</label>
-            <input type="file" id="logo-input" accept="image/*" onchange="loadImage(event, 'logo-preview')">
-        </div>
+                <div class="input-group">
+                    <label for="logo-input">شعار النقابة (رسمي) / Syndicate Logo</label>
+                    <input type="file" id="logo-input" accept="image/*" onchange="loadImage(event, 'logo-preview')">
+                </div>
+            </fieldset>
 
-        <div class="input-group">
-            <label>اسم العضو الرباعي (عربي)</label>
-            <input type="text" id="name-ar" placeholder="محمد أحمد محمود علي" oninput="updateText('view-name-ar', this.value)">
-        </div>
+            <fieldset>
+                <legend>هوية الممارس / Practitioner Identity</legend>
+                <div class="input-group">
+                    <label for="input-name-ar">اسم العضو الرباعي (عربي) / Arabic Name</label>
+                    <input type="text" id="input-name-ar" placeholder="محمد أحمد محمود علي" oninput="updateText('view-name-ar', this.value)" aria-required="true">
+                </div>
 
-        <div class="input-group">
-            <label>Full Member Name (English)</label>
-            <input type="text" id="name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateText('view-name-en', this.value)">
-        </div>
+                <div class="input-group">
+                    <label for="input-name-en">English Full Name / الاسم بالإنجليزية</label>
+                    <input type="text" id="input-name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateText('view-name-en', this.value)" aria-required="true">
+                </div>
+            </fieldset>
 
-        <div class="input-group">
-            <label>المؤهل الدراسي / Academic Qualification</label>
-            <select id="qual" onchange="updateQualInfo()">
-                <option value="">جاري التحميل...</option>
-            </select>
-        </div>
+            <fieldset>
+                <legend>المؤهلات والدرجات المهنية / Professional Credentials</legend>
+                <div class="input-group">
+                    <label for="qual">المؤهل الدراسي / Academic Qualification</label>
+                    <select id="qual" onchange="updateQualInfo()" aria-required="true">
+                        <option value="">جاري التحميل...</option>
+                    </select>
+                </div>
 
-        <div class="input-group">
-            <label>الدرجة المهنية / Professional Rank</label>
-            <select id="rank" onchange="updateRankAndSpec()">
-                <option value="">جاري التحميل...</option>
-            </select>
-        </div>
+                <div class="input-group">
+                    <label for="rank">الدرجة المهنية / Professional Rank</label>
+                    <select id="rank" onchange="updateRankAndSpec()" aria-required="true">
+                        <option value="">جاري التحميل...</option>
+                    </select>
+                </div>
 
-        <div class="input-group">
-            <label>التخصص / Specialization</label>
-            <select id="spec" onchange="updateRankAndSpec()">
-                <option value="">جاري التحميل...</option>
-            </select>
-        </div>
+                <div class="input-group">
+                    <label for="spec">التخصص / Specialization</label>
+                    <select id="spec" onchange="updateRankAndSpec()" aria-required="true">
+                        <option value="">جاري التحميل...</option>
+                    </select>
+                </div>
 
-        <div class="input-group">
-            <label>فرع النقابة / Syndicate Branch</label>
-            <select id="branch" onchange="updateBranch(this.value)">
-                <option value="">جاري التحميل...</option>
-            </select>
-        </div>
+                <div class="input-group">
+                    <label for="branch">فرع النقابة / Syndicate Branch</label>
+                    <select id="branch" onchange="updateBranch(this.value)" aria-required="true">
+                        <option value="">جاري التحميل...</option>
+                    </select>
+                </div>
+            </fieldset>
 
-        <div class="row-inputs">
-            <div class="input-group">
-                <label>رقم التصريح (Permit)</label>
-                <input type="text" id="p-no" placeholder="P-2023-001" oninput="updateText('p-no', this.value)">
+            <fieldset>
+                <legend>بيانات القيد والتصريح / Permit Records</legend>
+                <div class="row-inputs">
+                    <div class="input-group">
+                        <label for="p-no">رقم التصريح / Permit No.</label>
+                        <input type="text" id="p-no" placeholder="P-2023-001" oninput="updateText('p-no', this.value)" aria-required="true">
+                    </div>
+                    <div class="input-group">
+                        <label for="r-no">رقم القيد / Reg. No.</label>
+                        <input type="text" id="r-no" placeholder="R-10550" oninput="updateText('r-no', this.value)" aria-required="true">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="m-no">رقم العضوية / Membership No.</label>
+                    <input type="text" id="m-no" placeholder="M-9980" oninput="updateText('m-no', this.value)" aria-required="true">
+                </div>
+
+                <div class="input-group">
+                    <label for="nid-no">رقم الهوية الوطنية / National ID Number</label>
+                    <input type="text" id="nid-no" maxlength="14" pattern="[0-9]{14}" placeholder="29001011234567" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateText('nid-no', this.value)" aria-required="true" title="يجب إدخال 14 رقم">
+                </div>
+
+                <div class="input-group">
+                    <label for="qr-input">رمز التحقق الرقمي / QR Code</label>
+                    <input type="file" id="qr-input" accept="image/*" onchange="loadImage(event, 'qr-preview')">
+                </div>
+            </fieldset>
+
+            <div class="form-note">
+                <strong>ملاحظة زمنية:</strong> صلاحية التصريح سنة واحدة من تاريخه.
             </div>
-            <div class="input-group">
-                <label>رقم القيد (Reg.)</label>
-                <input type="text" id="r-no" placeholder="R-10550" oninput="updateText('r-no', this.value)">
+
+            <div class="sidebar-footer">
+                <button type="button" class="btn-reset" onclick="resetForm()">
+                    مسح / Clear
+                </button>
+                <button type="button" class="btn-print" onclick="window.print()">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+                    طباعة / Print
+                </button>
             </div>
-        </div>
-
-        <div class="input-group">
-            <label>رقم العضوية (Membership)</label>
-            <input type="text" id="m-no" placeholder="M-9980" oninput="updateText('m-no', this.value)">
-        </div>
-
-        <div class="input-group">
-            <label>رقم الهوية الوطنية / National ID Number</label>
-            <input type="text" id="nid-no" maxlength="14" placeholder="29001011234567" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateText('nid-no', this.value)">
-        </div>
-
-        <div class="input-group">
-            <label>رمز التحقق الرقمي (QR Code)</label>
-            <input type="file" id="qr-input" accept="image/*" onchange="loadImage(event, 'qr-preview')">
-        </div>
-
-        <div style="margin-top: 15px; font-size: 0.8rem; color: #666; background: #f9f9f9; padding: 10px; border-radius: 4px; border: 1px solid #eee;">
-            <strong>ملاحظة زمنية:</strong> صلاحية التصريح سنة واحدة من تاريخه.
-        </div>
-
-        <button class="btn-print" onclick="window.print()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
-            طباعة / حفظ PDF
-        </button>
+        </form>
     </div>
 
     <div class="preview-area">
@@ -523,21 +596,20 @@
         function updateText(id, val) {
             const targetAr = document.getElementById('view-' + id + '-ar');
             const targetEn = document.getElementById('view-' + id + '-en');
+            const placeholder = '\u00A0'; // Non-breaking space
 
-            // Handle split values for specific fields (University, Branch) if they contain " - "
             if (val.includes(" - ")) {
                 const parts = val.split(" - ");
-                if (targetAr) targetAr.innerText = parts[0];
-                if (targetEn) targetEn.innerText = parts[1];
+                if (targetAr) targetAr.innerText = parts[0] || placeholder;
+                if (targetEn) targetEn.innerText = parts[1] || placeholder;
                 return;
             }
 
             if (val.trim() === "") {
-                if (targetAr) targetAr.innerText = "---";
-                if (targetEn) targetEn.innerText = "---";
-                // Fallback for names which don't have -ar/-en suffix in updateText call
+                if (targetAr) targetAr.innerText = placeholder;
+                if (targetEn) targetEn.innerText = placeholder;
                 const direct = document.getElementById(id);
-                if (direct) direct.innerText = "---";
+                if (direct) direct.innerText = placeholder;
             } else {
                 if (targetAr) targetAr.innerText = toArabicDigits(val);
                 if (targetEn) targetEn.innerText = val;
@@ -550,11 +622,11 @@
         function updateRankAndSpec() {
             const rankVal = document.getElementById('rank').value;
             const specVal = document.getElementById('spec').value;
-
             const arSpan = document.getElementById('view-rank-ar');
             const enSpan = document.getElementById('view-rank-en');
+            const placeholder = '\u00A0';
 
-            let arRank = "---", enRank = "---";
+            let arRank = "", enRank = "";
             let arSpec = "", enSpec = "";
 
             if (rankVal.includes(" - ")) {
@@ -569,8 +641,13 @@
                 enSpec = p[1];
             }
 
-            arSpan.innerText = arSpec ? `${arRank} (${arSpec})` : arRank;
-            enSpan.innerText = enSpec ? `${enRank} (${enSpec})` : enRank;
+            if (!arRank && !arSpec) {
+                arSpan.innerText = placeholder;
+                enSpan.innerText = placeholder;
+            } else {
+                arSpan.innerText = arSpec ? `${arRank || ''} (${arSpec})` : (arRank || placeholder);
+                enSpan.innerText = enSpec ? `${enRank || ''} (${enSpec})` : (enRank || placeholder);
+            }
         }
 
         // تحديث معلومات المؤهل الدراسي
@@ -578,13 +655,15 @@
             const val = document.getElementById('qual').value;
             const arSpan = document.getElementById('view-qual-ar');
             const enSpan = document.getElementById('view-qual-en');
+            const placeholder = '\u00A0';
+
             if (val.includes(" | ")) {
                 const parts = val.split(" | ");
-                arSpan.innerText = parts[0];
-                enSpan.innerText = parts[1];
+                arSpan.innerText = parts[0] || placeholder;
+                enSpan.innerText = parts[1] || placeholder;
             } else {
-                arSpan.innerText = val || '---';
-                enSpan.innerText = val || '---';
+                arSpan.innerText = val || placeholder;
+                enSpan.innerText = val || placeholder;
             }
         }
 
@@ -592,13 +671,38 @@
         function updateBranch(val) {
             const arSpan = document.getElementById("view-branch-ar");
             const enSpan = document.getElementById("view-branch-en");
+            const placeholder = '\u00A0';
+
             if (val.includes(" - ")) {
                 const parts = val.split(" - ");
-                arSpan.innerText = parts[0];
-                enSpan.innerText = parts[1];
+                arSpan.innerText = parts[0] || placeholder;
+                enSpan.innerText = parts[1] || placeholder;
             } else {
-                arSpan.innerText = "";
-                enSpan.innerText = "";
+                arSpan.innerText = placeholder;
+                enSpan.innerText = placeholder;
+            }
+        }
+
+        // دالة إعادة تعيين النموذج
+        function resetForm() {
+            if (confirm("هل أنت متأكد من مسح جميع البيانات؟\nAre you sure you want to clear all data?")) {
+                const form = document.getElementById('certForm');
+                form.reset();
+
+                // Trigger updates for all fields to clear preview
+                const inputs = form.querySelectorAll('input, select');
+                inputs.forEach(input => {
+                    input.dispatchEvent(new Event('input', { bubbles: true }));
+                    input.dispatchEvent(new Event('change', { bubbles: true }));
+                });
+
+                // Manually trigger composite updates
+                updateRankAndSpec();
+                updateQualInfo();
+
+                // Reset images
+                document.getElementById('logo-preview').src = 'https://via.placeholder.com/100?text=Logo';
+                document.getElementById('qr-preview').src = 'https://via.placeholder.com/80?text=QR';
             }
         }
 
