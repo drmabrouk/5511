@@ -86,8 +86,8 @@
         }
 
         .header-text { width: 38%; }
-        .header-text.ar { text-align: right; font-family: 'Amiri', serif; font-size: 11pt; line-height: 1.4; }
-        .header-text.en { text-align: left; font-family: 'Cambria', 'Georgia', serif; font-size: 10pt; line-height: 1.4; direction: ltr; }
+        .header-text.ar { text-align: right; font-family: 'Amiri', serif; font-size: 12.5pt; line-height: 1.4; }
+        .header-text.en { text-align: left; font-family: 'Cambria', 'Georgia', serif; font-size: 11.5pt; line-height: 1.4; direction: ltr; }
 
         .logo-area { width: 24%; text-align: center; align-self: center; }
         #logo-preview { max-width: 80px; max-height: 80px; object-fit: contain; }
@@ -118,8 +118,13 @@
         .data-item .label-ar { font-weight: 700; color: var(--secondary-green); font-size: 10pt; }
         .data-item .label-en { font-weight: 400; color: #777; font-size: 8.5pt; direction: ltr; text-align: right; }
 
-        .data-item .value { font-weight: 700; font-size: 11.5pt; color: #000; font-family: 'Courier New', Courier, monospace; }
-        .data-item .value.text-val { font-family: 'Tajawal'; font-size: 10.5pt; }
+        .value-stack { display: flex; flex-direction: column; align-items: flex-end; text-align: right; gap: 2px; }
+        .value-ar { font-weight: 700; font-size: 11.5pt; color: #000; font-family: 'Tajawal', sans-serif; }
+        .value-en { font-weight: 500; font-size: 9.5pt; color: #555; font-family: 'Cambria', serif; direction: ltr; }
+        .value-num-ar { font-family: 'Amiri', serif; font-size: 12pt; }
+        .value-num-en { font-family: 'Courier New', Courier, monospace; font-size: 11pt; }
+
+        .nationality-text { font-size: 9pt; color: #666; font-weight: 500; margin-top: 2px; }
 
         /* النص القانوني */
         .legal-text {
@@ -223,22 +228,22 @@
         <div class="row-inputs">
             <div class="input-group">
                 <label>رقم التصريح (Permit)</label>
-                <input type="text" id="p-no" placeholder="P-2023-001" oninput="updateText('view-p-no', this.value)">
+                <input type="text" id="p-no" placeholder="P-2023-001" oninput="updateText('p-no', this.value)">
             </div>
             <div class="input-group">
                 <label>رقم القيد (Reg.)</label>
-                <input type="text" id="r-no" placeholder="R-10550" oninput="updateText('view-r-no', this.value)">
+                <input type="text" id="r-no" placeholder="R-10550" oninput="updateText('r-no', this.value)">
             </div>
         </div>
 
         <div class="input-group">
             <label>رقم العضوية (Membership)</label>
-            <input type="text" id="m-no" placeholder="M-9980" oninput="updateText('view-m-no', this.value)">
+            <input type="text" id="m-no" placeholder="M-9980" oninput="updateText('m-no', this.value)">
         </div>
 
         <div class="input-group">
             <label>رقم الهوية الوطنية / National ID Number</label>
-            <input type="text" id="nid-no" maxlength="14" placeholder="29001011234567" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateText('view-nid-no', this.value)">
+            <input type="text" id="nid-no" maxlength="14" placeholder="29001011234567" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateText('nid-no', this.value)">
         </div>
 
         <div class="input-group">
@@ -286,6 +291,7 @@
                 <div class="member-name-zone">
                     <div id="view-name-ar">اسم العضو الكريم الرباعي</div>
                     <div id="view-name-en">Member Full English Name</div>
+                    <div class="nationality-text">مصري الجنسية / Egyptian Nationality</div>
                 </div>
 
                 <div class="data-grid">
@@ -294,7 +300,10 @@
                             <span class="label-ar">الدرجة المهنية والتخصص</span>
                             <span class="label-en">Professional Rank & Specialization</span>
                         </div>
-                        <span class="value text-val" id="view-rank" style="color: var(--primary-dark); font-size: 13pt;">---</span>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-rank-ar" style="color: var(--primary-dark); font-size: 13pt;">---</span>
+                            <span class="value-en" id="view-rank-en" style="color: var(--primary-dark); font-size: 10pt;">---</span>
+                        </div>
                     </div>
 
                     <div class="data-item">
@@ -302,7 +311,10 @@
                             <span class="label-ar">رقم التصريح</span>
                             <span class="label-en">Permit Number</span>
                         </div>
-                        <span class="value" id="view-p-no">---</span>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-p-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-p-no-en">---</span>
+                        </div>
                     </div>
 
                     <div class="data-item">
@@ -310,7 +322,10 @@
                             <span class="label-ar">رقم القيد ورتبته</span>
                             <span class="label-en">Registration No. & Rank</span>
                         </div>
-                        <span class="value" id="view-r-no">---</span>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-r-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-r-no-en">---</span>
+                        </div>
                     </div>
 
                     <div class="data-item">
@@ -318,7 +333,10 @@
                             <span class="label-ar">رقم العضوية النقابية</span>
                             <span class="label-en">Membership Number</span>
                         </div>
-                        <span class="value" id="view-m-no">---</span>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-m-no-en">---</span>
+                        </div>
                     </div>
 
                     <div class="data-item">
@@ -326,7 +344,10 @@
                             <span class="label-ar">رقم الهوية الوطنية</span>
                             <span class="label-en">National ID Number</span>
                         </div>
-                        <span class="value" id="view-nid-no">---</span>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
+                        </div>
                     </div>
 
                     <div class="data-item" style="grid-column: span 2;">
@@ -334,7 +355,10 @@
                             <span class="label-ar">المؤهل الدراسي</span>
                             <span class="label-en">Academic Qualification</span>
                         </div>
-                        <span class="value text-val" id="view-qual">---</span>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-qual-ar">---</span>
+                            <span class="value-en" id="view-qual-en">---</span>
+                        </div>
                     </div>
 
 
@@ -343,14 +367,23 @@
                             <span class="label-ar">تاريخ انتهاء التصريح</span>
                             <span class="label-en">Permit Date of Expiry</span>
                         </div>
-                        <span class="value" id="view-expiry-date" style="color: #d32f2f; font-size: 13pt;">--/--/----</span>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-expiry-date-ar" style="color: #d32f2f; font-size: 13pt;">--/--/----</span>
+                            <span class="value-en value-num-en" id="view-expiry-date-en" style="color: #d32f2f; font-size: 11pt;">--/--/----</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="legal-text">
-                    تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد بسجلاتنا ومصرّح له بمزاولة المهنة الموضحة تخصصها أعلاه، وذلك استناداً للأنظمة واللوائح التنفيذية. يجب تجديد هذا التصريح قبل تاريخ الانتهاء الموضح.
+                    تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد رسمياً بسجلاتنا ومصرّح له بمزاولة المهنة في التخصص الموضح أعلاه، وذلك وفقاً للأنظمة المعمول بها واللوائح التنفيذية المحدثة الصادرة قبل تاريخ الانتهاء الموضح.
                     <br>
-                    <small style="direction: ltr; display: block; text-align: left; margin-top: 5px;">This is to certify that the above-mentioned member is registered and licensed to practice the stated profession. This permit must be renewed before the expiry date.</small>
+                    <small style="direction: ltr; display: block; text-align: left; margin-top: 2px;">The Injuries and Rehabilitation Syndicate certifies that the individual is officially registered in its records as a licensed practitioner in the specified specialty, in accordance with the applicable regulations and updated executive bylaws issued prior to the indicated expiration date.</small>
+
+                    <div style="margin-top: 10px; border-top: 1px solid #ddd; padding-top: 5px;">
+                        يقر حامل هذا التصريح بأنه غير مخول بممارسة الطب أو أي تشخيص أو علاج طبي خارج نطاق تخصصه المهني المرخص له، ويجب أن تقتصر جميع الممارسات ضمن حدود تخصصه المسجل وفقاً للمعايير الأخلاقية والقانونية للمهنة.
+                        <br>
+                        <small style="direction: ltr; display: block; text-align: left; margin-top: 2px;">The holder of this permit is not authorized to practice medicine or any medical diagnosis or treatment beyond their licensed professional scope. All practice must remain within the boundaries of their registered specialty, in accordance with ethical and legal standards of the profession.</small>
+                    </div>
                 </div>
 
                 <div class="footer-assets">
@@ -381,27 +414,60 @@
     </div>
 
     <script>
+        // دالة تحويل الأرقام إلى الأرقام العربية (المشرقية)
+        function toArabicDigits(num) {
+            const id = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+            return num.toString().replace(/[0-9]/g, function (w) {
+                return id[+w];
+            });
+        }
+
         // دالة تحديث النصوص اللحظية
         function updateText(id, val) {
-            const target = document.getElementById(id);
+            const targetAr = document.getElementById('view-' + id + '-ar');
+            const targetEn = document.getElementById('view-' + id + '-en');
+
             if (val.trim() === "") {
-                if (id.includes('ar')) target.innerText = "---";
-                else if (id.includes('en')) target.innerText = "---";
-                else target.innerText = "---";
+                if (targetAr) targetAr.innerText = "---";
+                if (targetEn) targetEn.innerText = "---";
+                // Fallback for names which don't have -ar/-en suffix in updateText call
+                const direct = document.getElementById(id);
+                if (direct) direct.innerText = "---";
             } else {
-                target.innerText = val;
+                if (targetAr) targetAr.innerText = toArabicDigits(val);
+                if (targetEn) targetEn.innerText = val;
+                const direct = document.getElementById(id);
+                if (direct) direct.innerText = val;
             }
         }
 
         // تحديث الدرجة المهنية (قائمة منسدلة)
         function updateRank(val) {
-            document.getElementById('view-rank').innerText = val || '---';
+            const arSpan = document.getElementById('view-rank-ar');
+            const enSpan = document.getElementById('view-rank-en');
+            if (val.includes(" | ")) {
+                const parts = val.split(" | ");
+                arSpan.innerText = parts[0];
+                enSpan.innerText = parts[1];
+            } else {
+                arSpan.innerText = val || '---';
+                enSpan.innerText = val || '---';
+            }
         }
 
         // تحديث معلومات المؤهل الدراسي
         function updateQualInfo() {
             const val = document.getElementById('qual').value;
-            document.getElementById('view-qual').innerText = val || '---';
+            const arSpan = document.getElementById('view-qual-ar');
+            const enSpan = document.getElementById('view-qual-en');
+            if (val.includes(" | ")) {
+                const parts = val.split(" | ");
+                arSpan.innerText = parts[0];
+                enSpan.innerText = parts[1];
+            } else {
+                arSpan.innerText = val || '---';
+                enSpan.innerText = val || '---';
+            }
         }
 
         // تحديث فرع النقابة في الهيدر
@@ -445,7 +511,9 @@
                 return `${d}/${m}/${y}`;
             };
 
-            document.getElementById('view-expiry-date').innerText = formatDate(expiry);
+            const expiryFormatted = formatDate(expiry);
+            document.getElementById('view-expiry-date-ar').innerText = toArabicDigits(expiryFormatted);
+            document.getElementById('view-expiry-date-en').innerText = expiryFormatted;
         };
     </script>
 </body>
