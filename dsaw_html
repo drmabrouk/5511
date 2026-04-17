@@ -60,7 +60,7 @@
         /* --- الخلفية المائية بنمط الأمواج الانسيابية (Wave-style Watermark) --- */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.012' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.012' /></linearGradient></defs><path d='M-100,150 C200,50 400,250 600,150 S900,50 1100,150' fill='none' stroke='url(%23g)' stroke-width='1.5'/><path d='M-100,350 C100,450 500,250 700,350 S1000,450 1100,350' fill='none' stroke='url(%23g)' stroke-width='1.5'/><path d='M-100,550 C200,650 400,450 800,550 S1000,650 1100,550' fill='none' stroke='url(%23g)' stroke-width='1.5'/><path d='M-100,750 C100,850 500,650 700,750 S1000,850 1100,750' fill='none' stroke='url(%23g)' stroke-width='1.5'/><path d='M-100,950 C300,850 600,1050 1100,950' fill='none' stroke='url(%23g)' stroke-width='1.5'/></svg>");
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.008' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.008' /></linearGradient></defs><path d='M-100,200 C200,100 400,300 600,200 S900,100 1100,200' fill='none' stroke='url(%23g)' stroke-width='1.2'/><path d='M-100,500 C100,600 500,400 700,500 S1000,600 1100,500' fill='none' stroke='url(%23g)' stroke-width='1.2'/><path d='M-100,800 C300,700 600,900 1100,800' fill='none' stroke='url(%23g)' stroke-width='1.2'/><text x='100' y='100' transform='rotate(-20 100,100)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='700' y='150' transform='rotate(15 700,150)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='400' y='400' transform='rotate(-10 400,400)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='800' y='600' transform='rotate(25 800,600)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='200' y='750' transform='rotate(-15 200,750)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text><text x='600' y='900' transform='rotate(10 600,900)' font-family='Arial' font-size='10' fill='black' fill-opacity='0.006'>Injuries and Rehabilitation Syndicate</text></svg>");
             background-size: cover;
             pointer-events: none; z-index: 1;
         }
@@ -180,7 +180,20 @@
 
         <div class="input-group">
             <label>اسم الجامعة / University Name</label>
-            <input type="text" id="uni" placeholder="جامعة القاهرة - Cairo University" oninput="updateText('uni', this.value)">
+            <select id="uni" onchange="updateText('uni', this.value)">
+                <option value="">اختر الجامعة...</option>
+                <option value="جامعة القاهرة - Cairo University">جامعة القاهرة - Cairo University</option>
+                <option value="جامعة المنصورة - Mansoura University">جامعة المنصورة - Mansoura University</option>
+                <option value="جامعة الزقازيق - Zagazig University">جامعة الزقازيق - Zagazig University</option>
+                <option value="جامعة المنوفية - Menoufia University">جامعة المنوفية - Menoufia University</option>
+                <option value="جامعة المنيا - Minia University">جامعة المنيا - Minia University</option>
+                <option value="جامعة حلوان - Helwan University">جامعة حلوان - Helwan University</option>
+                <option value="جامعة الإسكندرية - Alexandria University">جامعة الإسكندرية - Alexandria University</option>
+                <option value="جامعة أسيوط - Assiut University">جامعة أسيوط - Assiut University</option>
+                <optgroup label="خيار إضافي">
+                    <option value="جامعة دولية - International University">جامعة دولية - International University</option>
+                </optgroup>
+            </select>
         </div>
 
         <div class="input-group">
@@ -210,12 +223,24 @@
 
         <div class="input-group">
             <label>الدرجة المهنية / Professional Rank</label>
-            <select id="rank" onchange="updateRank(this.value)">
+            <select id="rank" onchange="updateRankAndSpec()">
                 <option value="">اختر الدرجة...</option>
-                <option value="أخصائي مساعد طبي | Medical Assistant Specialist">أخصائي مساعد طبي | Medical Assistant Specialist</option>
-                <option value="أخصائي | Specialist">أخصائي | Specialist</option>
-                <option value="استشاري | Consultant">استشاري | Consultant</option>
-                <option value="خبير | Expert">خبير | Expert</option>
+                <option value="أخصائي مساعد طبي - Medical Assistant Specialist">أخصائي مساعد طبي - Medical Assistant Specialist</option>
+                <option value="أخصائي - Specialist">أخصائي - Specialist</option>
+                <option value="استشاري - Consultant">استشاري - Consultant</option>
+                <option value="خبير - Expert">خبير - Expert</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>التخصص / Specialization</label>
+            <select id="spec" onchange="updateRankAndSpec()">
+                <option value="">اختر التخصص...</option>
+                <option value="الإصابات الرياضية والتأهيل - Sports Injuries and Rehabilitation">الإصابات الرياضية والتأهيل - Sports Injuries and Rehabilitation</option>
+                <option value="التغذية الرياضية - Sports Nutrition">التغذية الرياضية - Sports Nutrition</option>
+                <option value="العلاج بالتدليك الرياضي - Sports Massage Therapy">العلاج بالتدليك الرياضي - Sports Massage Therapy</option>
+                <option value="التأهيل المائي - Aquatic Rehabilitation">التأهيل المائي - Aquatic Rehabilitation</option>
+                <option value="الفسيولوجيا الرياضية - Sports Physiology">الفسيولوجيا الرياضية - Sports Physiology</option>
             </select>
         </div>
 
@@ -447,18 +472,31 @@
             }
         }
 
-        // تحديث الدرجة المهنية (قائمة منسدلة)
-        function updateRank(val) {
+        // تحديث الدرجة المهنية والتخصص معاً
+        function updateRankAndSpec() {
+            const rankVal = document.getElementById('rank').value;
+            const specVal = document.getElementById('spec').value;
+
             const arSpan = document.getElementById('view-rank-ar');
             const enSpan = document.getElementById('view-rank-en');
-            if (val.includes(" | ")) {
-                const parts = val.split(" | ");
-                arSpan.innerText = parts[0];
-                enSpan.innerText = parts[1];
-            } else {
-                arSpan.innerText = val || '---';
-                enSpan.innerText = val || '---';
+
+            let arRank = "---", enRank = "---";
+            let arSpec = "", enSpec = "";
+
+            if (rankVal.includes(" - ")) {
+                const p = rankVal.split(" - ");
+                arRank = p[0];
+                enRank = p[1];
             }
+
+            if (specVal.includes(" - ")) {
+                const p = specVal.split(" - ");
+                arSpec = p[0];
+                enSpec = p[1];
+            }
+
+            arSpan.innerText = arSpec ? `${arRank} (${arSpec})` : arRank;
+            enSpan.innerText = enSpec ? `${enRank} (${enSpec})` : enRank;
         }
 
         // تحديث معلومات المؤهل الدراسي
