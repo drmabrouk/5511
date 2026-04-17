@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-dark: #630000; /* أحمر خمري رسمي */
+            --primary-dark: #7b0000; /* أحمر خمري رسمي */
             --secondary-green: #004d40; /* أخضر غامق مؤسسي */
             --text-dark: #111;
             --watermark-color: rgba(220, 220, 220, 0.15); /* لون الخلفية المائية دقيق جداً */
@@ -27,7 +27,7 @@
         .sidebar-header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
         .sidebar-header h2 { color: var(--primary-dark); margin: 0; font-size: 1.3rem; font-weight: 800; }
         .sidebar-header p { color: #666; margin: 5px 0 0; font-size: 0.9rem; }
-        
+
         .input-group { margin-bottom: 12px; }
         .input-group label { display: block; margin-bottom: 4px; font-weight: 500; font-size: 0.85rem; color: #444; }
         .input-group input, .input-group select {
@@ -53,27 +53,25 @@
         /* هيكلية وثيقة A4 - بدون إطارات */
         .a4-page {
             width: 210mm; height: 297mm; background: white; position: relative;
-            box-shadow: 0 0 25px rgba(0,0,0,0.2); overflow: hidden;
+            box-shadow: 0 0 35px rgba(0,0,0,0.25); overflow: hidden;
             display: flex; flex-direction: column;
         }
 
         /* --- الخلفية المائية الأمنية الراقية (Guilloche Pattern) --- */
-        /* تم استخدام SVG كخلفية لضمان الدقة والتموجات الوهمية المعقدة */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 100 100"><g fill="none" stroke="rgba(200,200,200,0.10)" stroke-width="0.15"><path d="M0 50 C 20 20, 40 20, 50 50 S 80 80, 100 50" /><path d="M0 60 C 20 30, 40 30, 50 60 S 80 90, 100 60" /><path d="M0 40 C 20 10, 40 10, 50 40 S 80 70, 100 40" /><path d="M50 0 C 20 20, 20 40, 50 50 S 80 80, 50 100" /><path d="M60 0 C 30 20, 30 40, 60 50 S 90 80, 60 100" /><path d="M40 0 C 10 20, 10 40, 40 50 S 70 80, 40 100" /><ellipse cx="50" cy="50" rx="30" ry="15" transform="rotate(30 50 50)"/><ellipse cx="50" cy="50" rx="30" ry="15" transform="rotate(-30 50 50)"/></g></svg>');
-            background-size: 150px 150px; /* حجم النمط المتكرر */
+            background-size: 150px 150px;
             pointer-events: none; z-index: 1;
         }
 
         /* المحتوى الفعلي للمستند */
         .doc-content {
             position: relative; z-index: 2;
-            padding: 20mm 15mm 15mm 15mm; /* هوامش داخلية بروفيشنال */
+            padding: 12mm 10mm;
             height: 100%; display: flex; flex-direction: column;
         }
 
-        /* زخرفة علوية بسيطة جداً وغير بارزة بدلاً من الإطار */
         .doc-content::before {
             content: ''; position: absolute; top: 0; left: 15mm; right: 15mm; height: 4px;
             background: linear-gradient(to right, var(--primary-dark), var(--secondary-green), var(--primary-dark));
@@ -82,66 +80,75 @@
 
         /* الهيدر */
         .header {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 35px; padding-bottom: 15px;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 15px; padding-bottom: 10px;
             border-bottom: 1px solid #eee;
         }
 
         .header-text { width: 38%; }
         .header-text.ar { text-align: right; font-family: 'Amiri', serif; font-size: 11pt; line-height: 1.4; }
         .header-text.en { text-align: left; font-family: 'Cambria', 'Georgia', serif; font-size: 10pt; line-height: 1.4; direction: ltr; }
-        
-        .logo-area { width: 24%; text-align: center; }
-        #logo-preview { max-width: 90px; max-height: 90px; object-fit: contain; }
+
+        .logo-area { width: 24%; text-align: center; align-self: center; }
+        #logo-preview { max-width: 80px; max-height: 80px; object-fit: contain; }
 
         /* عنوان الوثيقة */
-        .doc-title { text-align: center; margin-bottom: 45px; }
-        .doc-title h1 { margin: 0; color: var(--primary-dark); font-size: 26pt; font-family: 'Amiri', serif; font-weight: 700; }
-        .doc-title p { margin: 5px 0 0; font-size: 15pt; color: #555; font-weight: 300; text-transform: uppercase; letter-spacing: 1px; }
+        .doc-title { text-align: center; margin-bottom: 15px; }
+        .doc-title h1 { margin: 0; color: var(--primary-dark); font-size: 24pt; font-family: 'Amiri', serif; font-weight: 700; letter-spacing: 0.5px; }
+        .doc-title p { margin: 2px 0 0; font-size: 14pt; color: #555; font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px; }
 
         /* بيانات العضو الرئيسية */
-        .member-name-zone { text-align: center; margin-bottom: 40px; position: relative; padding: 10px 0; }
-        #view-name-ar { font-size: 20pt; font-weight: 800; color: #000; font-family: 'Tajawal', sans-serif; }
-        #view-name-en { font-size: 14pt; color: #444; margin-top: 8px; font-family: 'Cambria', serif; font-weight: 400; font-style: italic; }
+        .member-name-zone { text-align: center; margin-bottom: 15px; position: relative; padding: 5px 0; }
+        #view-name-ar { font-size: 19pt; font-weight: 800; color: #000; font-family: 'Tajawal', sans-serif; }
+        #view-name-en { font-size: 13pt; color: #444; margin-top: 5px; font-family: 'Cambria', serif; font-weight: 400; font-style: italic; }
 
         /* شبكة البيانات الفنية */
         .data-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: x 25px;
-            margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px;
+            margin-top: 10px; border-top: 1px solid #eee; padding-top: 10px;
         }
 
         .data-item {
-            border-bottom: 1px solid #f5f5f5; padding: 12px 0;
+            border-bottom: 1px solid #f5f5f5; padding: 8px 0;
             display: flex; justify-content: space-between; align-items: baseline;
         }
 
         .data-item .label-pair { display: flex; flex-direction: column; text-align: right; }
-        .data-item .label-ar { font-weight: 700; color: var(--secondary-green); font-size: 10.5pt; }
-        .data-item .label-en { font-weight: 400; color: #777; font-size: 9pt; direction: ltr; text-align: right; }
+        .data-item .label-ar { font-weight: 700; color: var(--secondary-green); font-size: 10pt; }
+        .data-item .label-en { font-weight: 400; color: #777; font-size: 8.5pt; direction: ltr; text-align: right; }
 
-        .data-item .value { font-weight: 700; font-size: 12pt; color: #000; font-family: 'Courier New', Courier, monospace; } /* خط مونو للأرقام */
-        .data-item .value.text-val { font-family: 'Tajawal'; font-size: 11pt; }
-        
+        .data-item .value { font-weight: 700; font-size: 11.5pt; color: #000; font-family: 'Courier New', Courier, monospace; }
+        .data-item .value.text-val { font-family: 'Tajawal'; font-size: 10.5pt; }
+
         /* النص القانوني */
         .legal-text {
-            margin-top: 40px; font-size: 9.5pt; line-height: 1.7; color: #666; text-align: justify;
-            background: rgba(245, 245, 245, 0.5); padding: 15px; border-radius: 4px;
+            margin-top: 15px; font-size: 9pt; line-height: 1.6; color: #444; text-align: justify;
+            background: rgba(245, 245, 245, 0.5); padding: 12px; border-radius: 4px; border-right: 3px solid var(--secondary-green);
         }
 
         /* الفوتر */
         .footer-assets {
-            margin-top: auto; display: flex; justify-content: space-between;
-            align-items: flex-end; padding-top: 20px; border-top: 1px solid #eee;
+            margin-top: auto; display: flex; justify-content: space-between; margin-bottom: 10px;
+            align-items: flex-end; padding-top: 10px; border-top: 1px solid #eee;
         }
 
         .qr-box { width: 110px; text-align: center; }
-        #qr-preview { width: 100px; height: 100px; border: 1px solid #eaeaea; padding: 2px; background: #fff; }
-        .qr-box p { font-size: 8pt; margin: 8px 0 0; color: #777; line-height: 1.3; }
+        #qr-preview { width: 90px; height: 90px; border: 1px solid #eaeaea; padding: 2px; background: #fff; }
+        .qr-box p { font-size: 7.5pt; margin: 5px 0 0; color: #777; line-height: 1.2; }
 
-        .signature-box { text-align: center; min-width: 220px; color: var(--text-dark); }
-        .signature-box .sig-line { border-top: 1.5px solid #333; margin-top: 55px; width: 100%; display: block; }
-        .signature-box p { margin: 10px 0 0; font-weight: 700; font-size: 11pt; }
-        .signature-box small { font-size: 9pt; color: #555; }
+        .signature-box { text-align: center; min-width: 200px; color: var(--text-dark); }
+        .signature-box .sig-line { border-top: 1.5px solid #333; margin-top: 45px; width: 100%; display: block; }
+        .signature-box p { margin: 8px 0 0; font-weight: 700; font-size: 10.5pt; }
+        .signature-box small { font-size: 8.5pt; color: #555; }
+
+        .verification-footer {
+            text-align: center;
+            font-size: 7.5pt;
+            color: #888;
+            border-top: 1px dashed #eee;
+            padding-top: 8px;
+            margin-top: 5px;
+        }
 
         /* --- إعدادات الطباعة الاحترافية --- */
         @media print {
@@ -153,7 +160,6 @@
                 width: 210mm; height: 297mm;
                 margin: 0; page-break-after: always;
             }
-            /* تأكيد ظهور الخلفيات المائية عند الطباعة في بعض المتصفحات */
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
     </style>
@@ -165,7 +171,7 @@
             <h2>بوابة إصدار التصاريح</h2>
             <p>أدخل البيانات بدقة لإنشاء المستند</p>
         </div>
-        
+
         <div class="input-group">
             <label>شعار النقابة (رسمي)</label>
             <input type="file" id="logo-input" accept="image/*" onchange="loadImage(event, 'logo-preview')">
@@ -192,6 +198,17 @@
             </select>
         </div>
 
+        <div class="input-group">
+            <label>فرع النقابة / Syndicate Branch</label>
+            <select id="branch" onchange="updateBranch(this.value)">
+                <option value="">اختر الفرع...</option>
+                <option value="القاهرة - Cairo">القاهرة - Cairo</option>
+                <option value="المنوفية - Monufia">المنوفية - Monufia</option>
+                <option value="الإسكندرية - Alexandria">الإسكندرية - Alexandria</option>
+                <option value="الجيزة - Giza">الجيزة - Giza</option>
+            </select>
+        </div>
+
         <div class="row-inputs">
             <div class="input-group">
                 <label>رقم التصريح (Permit)</label>
@@ -214,7 +231,7 @@
         </div>
 
         <div style="margin-top: 15px; font-size: 0.8rem; color: #666; background: #f9f9f9; padding: 10px; border-radius: 4px; border: 1px solid #eee;">
-            <strong>ملاحظة زمنية:</strong> تاريخ الإصدار هو تاريخ اليوم تلقائياً، وصلاحية التصريح سنة واحدة من تاريخه.
+            <strong>ملاحظة زمنية:</strong> صلاحية التصريح سنة واحدة من تاريخه.
         </div>
 
         <button class="btn-print" onclick="window.print()">
@@ -226,21 +243,23 @@
     <div class="preview-area">
         <div class="a4-page" id="printable">
             <div class="security-watermark"></div>
-            
+
             <div class="doc-content">
-                
+
                 <div class="header">
                     <div class="header-text ar">
-                        <strong>المملكة العربية السعودية</strong><br>
-                        الهيئة السعودية للمهنيين<br>
+                        <strong>جمهورية مصر العربية</strong><br>
+                        نقابة الإصابات والتأهيل<br>
+                        <span id="view-branch-ar" style="font-weight: bold; color: var(--secondary-green);"></span><br>
                         الإدارة العامة للتراخيص المهنية
                     </div>
                     <div class="logo-area">
-                        <img id="logo-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><cyan cx='50' cy='50' r='45' stroke='%23630000' stroke-width='2' fill='none'/><path d='M30 70 L50 30 L70 70 M50 30 L50 70' stroke='%23004d40' stroke-width='3' fill='none'/></svg>" alt="Logo">
+                        <img id="logo-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'> <circle cx='50' cy='50' r='45' stroke='%237b0000' stroke-width='2' fill='none'/><path d='M30 70 L50 30 L70 70 M50 30 L50 70' stroke='%23004d40' stroke-width='3' fill='none'/></svg>" alt="Logo">
                     </div>
                     <div class="header-text en">
-                        <strong>Kingdom of Saudi Arabia</strong><br>
-                        Saudi Authority for Professionals<br>
+                        <strong>Arab Republic of Egypt</strong><br>
+                        Injuries and Rehabilitation Syndicate<br>
+                        <span id="view-branch-en" style="font-weight: bold; color: var(--secondary-green);"></span><br>
                         General Dept. of Professional Licensure
                     </div>
                 </div>
@@ -256,7 +275,7 @@
                 </div>
 
                 <div class="data-grid">
-                    <div class="data-item" style="grid-column: span 2; background: rgba(99, 0, 0, 0.03); padding: 15px; border-radius: 4px;">
+                    <div class="data-item" style="grid-column: span 2; background: rgba(123, 0, 0, 0.03); padding: 12px; border-radius: 4px;">
                         <div class="label-pair">
                             <span class="label-ar">الدرجة المهنية والتخصص</span>
                             <span class="label-en">Professional Rank & Specialization</span>
@@ -296,25 +315,17 @@
                         <span class="value" id="view-mem-expiry">--/--/----</span>
                     </div>
 
-                    <div class="data-item" style="border-bottom: 2px solid var(--primary-dark);">
-                        <div class="label-pair">
-                            <span class="label-ar">تاريخ إصدار التصريح</span>
-                            <span class="label-en">Permit Date of Issue</span>
-                        </div>
-                        <span class="value" id="view-issue-date">--/--/----</span>
-                    </div>
-
-                    <div class="data-item" style="border-bottom: 2px solid #d32f2f;">
+                    <div class="data-item" style="border-bottom: 2px solid #d32f2f; grid-column: span 2;">
                         <div class="label-pair">
                             <span class="label-ar">تاريخ انتهاء التصريح</span>
                             <span class="label-en">Permit Date of Expiry</span>
                         </div>
-                        <span class="value" id="view-expiry-date" style="color: #d32f2f;">--/--/----</span>
+                        <span class="value" id="view-expiry-date" style="color: #d32f2f; font-size: 13pt;">--/--/----</span>
                     </div>
                 </div>
 
                 <div class="legal-text">
-                    يشهد القسم المختص بالهيئة بأن المذكور أعلاه مقيد بسجلاتنا ومصرّح له بمزاولة المهنة الموضحة تخصصها أعلاه، وذلك استناداً للأنظمة واللوائح التنفيذية. يجب تجديد هذا التصريح قبل تاريخ الانتهاء الموضح.
+                    تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد بسجلاتنا ومصرّح له بمزاولة المهنة الموضحة تخصصها أعلاه، وذلك استناداً للأنظمة واللوائح التنفيذية. يجب تجديد هذا التصريح قبل تاريخ الانتهاء الموضح.
                     <br>
                     <small style="direction: ltr; display: block; text-align: left; margin-top: 5px;">This is to certify that the above-mentioned member is registered and licensed to practice the stated profession. This permit must be renewed before the expiry date.</small>
                 </div>
@@ -327,9 +338,19 @@
                     <div class="signature-box">
                         <small>يعتمد،،،</small>
                         <span class="sig-line"></span>
-                        <p>مدير عام التراخيص المهنية</p>
-                        <small>Director General of Licensure</small>
+                        <p>نقيب الإصابات والتأهيل</p>
+                        <small>Syndicate President</small>
                     </div>
+                </div>
+
+                <div class="verification-footer">
+                    يمكن التحقق من صحة هذا التصريح عبر بوابة التحقق الإلكترونية باستخدام رقم التصريح أو رقم الهوية الوطنية:
+                    <strong>irseg.org/verify</strong>
+                    <br>
+                    <span style="direction: ltr; display: inline-block; margin-top: 3px;">
+                        Verification can be authenticated via the online portal using the permit or national ID number:
+                        <strong>irseg.org/verify</strong>
+                    </span>
                 </div>
 
             </div>
@@ -341,9 +362,8 @@
         function updateText(id, val) {
             const target = document.getElementById(id);
             if (val.trim() === "") {
-                // إعادة النص الافتراضي في حال مسح الإدخال
-                if (id.includes('ar')) target.innerText = "--- عربي ---";
-                else if (id.includes('en')) target.innerText = "--- English ---";
+                if (id.includes('ar')) target.innerText = "---";
+                else if (id.includes('en')) target.innerText = "---";
                 else target.innerText = "---";
             } else {
                 target.innerText = val;
@@ -352,7 +372,21 @@
 
         // تحديث الدرجة المهنية (قائمة منسدلة)
         function updateRank(val) {
-            document.getElementById('view-rank').innerText = val || '--- لم تحدد الدرجة ---';
+            document.getElementById('view-rank').innerText = val || '---';
+        }
+
+        // تحديث فرع النقابة في الهيدر
+        function updateBranch(val) {
+            const arSpan = document.getElementById("view-branch-ar");
+            const enSpan = document.getElementById("view-branch-en");
+            if (val.includes(" - ")) {
+                const parts = val.split(" - ");
+                arSpan.innerText = parts[0];
+                enSpan.innerText = parts[1];
+            } else {
+                arSpan.innerText = "";
+                enSpan.innerText = "";
+            }
         }
 
         // معالجة وتحميل الصور (الشعار و QR)
@@ -364,7 +398,7 @@
             reader.onload = function() {
                 const output = document.getElementById(targetId);
                 output.src = reader.result;
-                output.style.border = "none"; // إزالة الإطار الوهمي عند تحميل صورة حقيقية
+                output.style.border = "none";
             }
             reader.readAsDataURL(file);
         }
@@ -372,25 +406,18 @@
         // الأتمتة الزمنية عند تحميل الصفحة
         window.onload = function() {
             const today = new Date();
-            
-            // تاريخ الانتهاء (سنة واحدة)
             const expiry = new Date();
             expiry.setFullYear(today.getFullYear() + 1);
-
-            // تاريخ صلاحية العضوية (فرضاً سنتين)
             const memExpiry = new Date();
             memExpiry.setFullYear(today.getFullYear() + 2);
 
-            // دالة تنسيق التاريخ DD/MM/YYYY
             const formatDate = (date) => {
                 let d = date.getDate().toString().padStart(2, '0');
-                let m = (date.getMonth() + 1).toString().padStart(2, '0'); // الأشهر تبدأ من 0
+                let m = (date.getMonth() + 1).toString().padStart(2, '0');
                 let y = date.getFullYear();
                 return `${d}/${m}/${y}`;
             };
 
-            // عرض التواريخ في المعاينة
-            document.getElementById('view-issue-date').innerText = formatDate(today);
             document.getElementById('view-expiry-date').innerText = formatDate(expiry);
             document.getElementById('view-mem-expiry').innerText = formatDate(memExpiry);
         };
