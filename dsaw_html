@@ -188,15 +188,14 @@
             <input type="text" id="name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateText('view-name-en', this.value)">
         </div>
 
-        <div class="row-inputs">
-            <div class="input-group">
-                <label>المؤهل الدراسي / Qualification</label>
-                <input type="text" id="qual" placeholder="بكالوريوس العلاج الطبيعي" oninput="updateQualInfo()">
-            </div>
-            <div class="input-group">
-                <label>اسم الجامعة / University</label>
-                <input type="text" id="univ" placeholder="جامعة القاهرة" oninput="updateQualInfo()">
-            </div>
+        <div class="input-group">
+            <label>المؤهل الدراسي / Academic Qualification</label>
+            <select id="qual" onchange="updateQualInfo()">
+                <option value="">اختر المؤهل...</option>
+                <option value="بكالوريوس في علوم الرياضة | Bachelor of Sports Sciences">بكالوريوس في علوم الرياضة | Bachelor of Sports Sciences</option>
+                <option value="ماجستير في علوم الرياضة – الصحة الرياضية | Master of Sports Sciences – Sports Health">ماجستير في علوم الرياضة – الصحة الرياضية | Master of Sports Sciences – Sports Health</option>
+                <option value="دكتوراه في علوم الرياضة – الصحة الرياضية | PhD in Sports Sciences – Sports Health">دكتوراه في علوم الرياضة – الصحة الرياضية | PhD in Sports Sciences – Sports Health</option>
+            </select>
         </div>
 
         <div class="input-group">
@@ -287,7 +286,6 @@
                 <div class="member-name-zone">
                     <div id="view-name-ar">اسم العضو الكريم الرباعي</div>
                     <div id="view-name-en">Member Full English Name</div>
-                    <div class="member-qual-zone" id="view-qual-info"></div>
                 </div>
 
                 <div class="data-grid">
@@ -329,6 +327,14 @@
                             <span class="label-en">National ID Number</span>
                         </div>
                         <span class="value" id="view-nid-no">---</span>
+                    </div>
+
+                    <div class="data-item" style="grid-column: span 2;">
+                        <div class="label-pair">
+                            <span class="label-ar">المؤهل الدراسي</span>
+                            <span class="label-en">Academic Qualification</span>
+                        </div>
+                        <span class="value text-val" id="view-qual">---</span>
                     </div>
 
 
@@ -392,17 +398,10 @@
             document.getElementById('view-rank').innerText = val || '---';
         }
 
-        // تحديث معلومات المؤهل والجامعة
+        // تحديث معلومات المؤهل الدراسي
         function updateQualInfo() {
-            const qual = document.getElementById('qual').value;
-            const univ = document.getElementById('univ').value;
-            const target = document.getElementById('view-qual-info');
-
-            if (qual || univ) {
-                target.innerText = `${qual}${qual && univ ? ' - ' : ''}${univ}`;
-            } else {
-                target.innerText = '';
-            }
+            const val = document.getElementById('qual').value;
+            document.getElementById('view-qual').innerText = val || '---';
         }
 
         // تحديث فرع النقابة في الهيدر
@@ -438,8 +437,6 @@
             const today = new Date();
             const expiry = new Date();
             expiry.setFullYear(today.getFullYear() + 1);
-            const memExpiry = new Date();
-            memExpiry.setFullYear(today.getFullYear() + 2);
 
             const formatDate = (date) => {
                 let d = date.getDate().toString().padStart(2, '0');
