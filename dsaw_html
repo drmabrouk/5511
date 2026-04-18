@@ -107,9 +107,9 @@
         .action-controls {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 8px;
             margin-top: auto;
-            padding: 15px 0;
+            padding: 10px 0;
             border-top: 1px solid #eee;
             background: #fff;
             position: sticky;
@@ -118,9 +118,10 @@
         }
 
         .btn-action {
-            padding: 12px; border: none; border-radius: 8px; cursor: pointer;
-            font-weight: 700; font-size: 0.95rem; transition: all 0.3s ease;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+            padding: 8px 10px; border: none; border-radius: 6px; cursor: pointer;
+            font-weight: 700; font-size: 0.85rem; transition: all 0.3s ease;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 2px; line-height: 1.1;
         }
 
         .btn-print-only { background: var(--primary-dark); color: white; }
@@ -250,10 +251,25 @@
         #qr-preview { width: 75px; height: 75px; border: 1px solid #eaeaea; padding: 2px; background: #fff; }
         .qr-box p { font-size: 7pt; margin: 3px 0 0; color: #444; font-weight: 700; line-height: 1.1; }
 
-        .signature-box { text-align: center; min-width: 200px; color: var(--text-dark); }
+        .signature-box { text-align: center; min-width: 200px; color: var(--text-dark); position: relative; }
         .signature-box .sig-line { border-top: 1.5px solid #333; margin-top: 45px; width: 100%; display: block; }
         .signature-box p { margin: 8px 0 0; font-weight: 700; font-size: 10.5pt; }
         .signature-box small { font-size: 8.5pt; color: #555; }
+        .electronic-signature {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Amiri', serif;
+            font-size: 22pt;
+            color: #000080;
+            opacity: 0.8;
+            font-weight: 700;
+            white-space: nowrap;
+            display: none;
+            user-select: none;
+            pointer-events: none;
+        }
 
         .verification-footer {
             text-align: center;
@@ -340,7 +356,7 @@
                     <input type="text" id="name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateNameDisplay()">
                 </div>
                 <div class="input-group">
-                    <label>كود العضو / Member Code</label>
+                    <label>رقم القيد / Registration Number</label>
                     <input type="text" id="code-no" placeholder="IRSEG-2024-XXXX" oninput="updateText('code-no', this.value)">
                 </div>
             </fieldset>
@@ -363,7 +379,7 @@
                     </select>
                 </div>
                 <div class="input-group">
-                    <label>تخصص المؤهل / Academic Specialization</label>
+                    <label>التخصص الجامعي / University Specialization</label>
                     <div style="display: flex; gap: 5px;">
                         <select id="acad-spec" style="flex-grow: 1;" onchange="handleAcadSpecChange(this.value)">
                             <option value="">جاري التحميل...</option>
@@ -372,7 +388,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <label>تاريخ الحصول على المؤهل / Qual. Date</label>
+                    <label>تاريخ الحصول على المؤهل / Date of Qualification</label>
                     <input type="text" id="qual-date" placeholder="يونيو 2020" oninput="updateText('qual-date', this.value)">
                 </div>
                 <div class="input-group">
@@ -403,16 +419,16 @@
                 </div>
                 <div class="row-inputs">
                     <div class="input-group">
-                        <label>رقم التصريح</label>
+                        <label>رقم تصريح المزاولة / Practice Permit Number</label>
                         <input type="text" id="p-no" placeholder="P-2023-001" oninput="updateText('p-no', this.value)">
                     </div>
                     <div class="input-group">
-                        <label>رقم القيد</label>
+                        <label>رقم القيد / Registration Number</label>
                         <input type="text" id="r-no" placeholder="R-10550" oninput="updateText('r-no', this.value)">
                     </div>
                 </div>
                 <div class="input-group">
-                    <label>رقم العضوية (Membership)</label>
+                    <label>رقم العضوية / Membership Number</label>
                     <input type="text" id="m-no" placeholder="M-9980" oninput="updateText('m-no', this.value)">
                 </div>
             </fieldset>
@@ -443,9 +459,15 @@
 
             <fieldset>
                 <legend>إعدادات التوثيق / Certification</legend>
-                <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
-                    <input type="checkbox" id="check-electronic" style="width: 20px; height: 20px; cursor: pointer;" onchange="toggleElectronicDisclaimer(this.checked)">
-                    <label for="check-electronic" style="margin: 0; cursor: pointer; font-weight: 700;">تفعيل التوثيق الإلكتروني / Electronic Issuance</label>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="check-electronic" style="width: 20px; height: 20px; cursor: pointer;" onchange="toggleElectronicDisclaimer(this.checked)">
+                        <label for="check-electronic" style="margin: 0; cursor: pointer; font-weight: 700;">تفعيل التوثيق الإلكتروني / Electronic Issuance</label>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="check-signature" style="width: 20px; height: 20px; cursor: pointer;" onchange="toggleElectronicSignature(this.checked)">
+                        <label for="check-signature" style="margin: 0; cursor: pointer; font-weight: 700;">تفعيل التوقيع الإلكتروني / Electronic Signature</label>
+                    </div>
                 </div>
             </fieldset>
         </form>
@@ -539,7 +561,7 @@
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم العضوية النقابية</span>
+                            <span class="label-ar">رقم العضوية</span>
                             <span class="label-en">Membership Number</span>
                         </div>
                         <div class="value-stack">
@@ -548,11 +570,11 @@
                         </div>
                     </div>
 
-                    <!-- 3. Permit Number <-> Member Code -->
+                    <!-- 3. Practice Permit Number <-> Registration Number -->
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم التصريح</span>
-                            <span class="label-en">Permit Number</span>
+                            <span class="label-ar">رقم تصريح المزاولة</span>
+                            <span class="label-en">Practice Permit Number</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar value-num-ar" id="view-p-no-ar">---</span>
@@ -561,8 +583,8 @@
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">كود العضو</span>
-                            <span class="label-en">Member Code</span>
+                            <span class="label-ar">رقم القيد</span>
+                            <span class="label-en">Registration Number</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar" id="view-code-no-ar">---</span>
@@ -595,8 +617,8 @@
                     <!-- 5. Academic Specialization <-> Qualification Date -->
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">تخصص المؤهل</span>
-                            <span class="label-en">Academic Specialization</span>
+                            <span class="label-ar">التخصص الجامعي</span>
+                            <span class="label-en">University Specialization</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar" id="view-acad-spec-ar">---</span>
@@ -605,8 +627,8 @@
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">تاريخ الحصول عليه</span>
-                            <span class="label-en">Qualification Date</span>
+                            <span class="label-ar">تاريخ الحصول على المؤهل</span>
+                            <span class="label-en">Date of Qualification</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar" id="view-qual-date-ar">---</span>
@@ -643,6 +665,7 @@
                     <!-- Signature aligned left -->
                     <div class="signature-box" style="text-align: center;">
                         <small>يعتمد،،،</small>
+                        <div id="view-signature" class="electronic-signature">محمد أحمد</div>
                         <span class="sig-line"></span>
                         <p>رئيس اللجنة النقابية</p>
                     </div>
@@ -650,10 +673,10 @@
 
                 <div class="verification-footer">
                     <div id="footer-verify-ar">
-                        يمكن التحقق من صحة هذا التصريح عبر بوابة التحقق الإلكترونية <strong style="color: var(--primary-dark);">irseg.org/verify</strong> باستخدام رقم التصريح (<span id="view-footer-pno-ar">---</span>) والرقم القومي (<span id="view-footer-nid-ar">---</span>).
+                        يمكن التحقق من صحة هذا التصريح عبر بوابة التحقق الإلكترونية <strong style="color: var(--primary-dark);">irseg.org/verify</strong> باستخدام رقم تصريح المزاولة (<span id="view-footer-pno-ar">---</span>) والرقم القومي (<span id="view-footer-nid-ar">---</span>).
                     </div>
                     <div id="footer-verify-en" style="direction: ltr; margin-top: 4px;">
-                        This certificate can be verified via the electronic verification portal <strong style="color: var(--primary-dark);">irseg.org/verify</strong> using Permit No. (<span id="view-footer-pno-en">---</span>) and National ID (<span id="view-footer-nid-en">---</span>).
+                        This certificate can be verified via the electronic verification portal <strong style="color: var(--primary-dark);">irseg.org/verify</strong> using Practice Permit No. (<span id="view-footer-pno-en">---</span>) and National ID (<span id="view-footer-nid-en">---</span>).
                     </div>
                 </div>
 
@@ -1050,6 +1073,13 @@
             await saveConfig();
         }
 
+        async function toggleElectronicSignature(isChecked) {
+            const sig = document.getElementById('view-signature');
+            if (sig) sig.style.display = isChecked ? 'block' : 'none';
+            APP_CONFIG.electronicSignature = isChecked;
+            await saveConfig();
+        }
+
         // معالجة وتحميل الصور (الشعار و QR)
         function loadImage(event, targetId) {
             const file = event.target.files[0];
@@ -1098,7 +1128,7 @@
         let storageDirHandle = null;
         let DATABASE = [];
         let currentDbName = "syndicate_database.json";
-        let APP_CONFIG = { logo: null, watermark: null, watermarkOpacity: 0.1, electronicIssuance: false };
+        let APP_CONFIG = { logo: null, watermark: null, watermarkOpacity: 0.1, electronicIssuance: false, electronicSignature: false };
         let CURRENT_EXPIRY_DATE = ""; // لتخزين تاريخ انتهاء التصريح الحالي
 
         // استخدام IndexedDB لحفظ مقبض المجلد (Directory Handle) بشكل دائم
@@ -1200,6 +1230,12 @@
                         const check = document.getElementById('check-electronic');
                         check.checked = APP_CONFIG.electronicIssuance;
                         document.getElementById('view-electronic-disclaimer').style.display = APP_CONFIG.electronicIssuance ? 'block' : 'none';
+                    }
+                    if (APP_CONFIG.electronicSignature !== undefined) {
+                        const checkSig = document.getElementById('check-signature');
+                        if (checkSig) checkSig.checked = APP_CONFIG.electronicSignature;
+                        const sigView = document.getElementById('view-signature');
+                        if (sigView) sigView.style.display = APP_CONFIG.electronicSignature ? 'block' : 'none';
                     }
                 }
             } catch (err) { console.log("Config not found or invalid."); }
