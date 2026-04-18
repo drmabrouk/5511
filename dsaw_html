@@ -58,6 +58,9 @@
         .btn-save-as { background: var(--secondary-green); color: white; }
         .btn-save-as:hover { background: #00332a; transform: translateY(-2px); }
 
+        .btn-storage { background: #455a64; color: white; margin-bottom: 10px; }
+        .btn-storage:hover { background: #263238; }
+
         .btn-action span { font-size: 0.75rem; font-weight: 400; opacity: 0.9; }
 
         /* --- منطقة المعاينة (Preview) --- */
@@ -73,10 +76,10 @@
             display: flex; flex-direction: column;
         }
 
-        /* --- خلفية مائية انسيابية أمنية (Secure Wave-Flow Watermark) --- */
+        /* --- نظام خلفية مائية أمنية متموجة (Advanced Security Wave-Style Watermark) --- */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1414' preserveAspectRatio='none'><defs><linearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.04' /><stop offset='50%25' stop-color='%23004d40' stop-opacity='0.01' /><stop offset='100%25' stop-color='%237b0000' stop-opacity='0.04' /></linearGradient><linearGradient id='g2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'><stop offset='0%25' stop-color='%23004d40' stop-opacity='0.04' /><stop offset='50%25' stop-color='%237b0000' stop-opacity='0.01' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.04' /></linearGradient></defs><g fill='none' stroke-width='1.2' stroke-linecap='round'><path d='M-100,50 C200,-100 400,200 700,50 S1000,-100 1100,50' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,200 C200,50 400,350 700,200 S1000,50 1100,200' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,350 C200,200 400,500 700,350 S1000,200 1100,350' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,500 C200,350 400,650 700,500 S1000,350 1100,500' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,650 C200,500 400,800 700,650 S1000,500 1100,650' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,800 C200,650 400,950 700,800 S1000,650 1100,800' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,950 C200,800 400,1100 700,950 S1000,800 1100,950' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,1100 C200,950 400,1250 700,1100 S1000,950 1100,1100' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,1250 C200,1100 400,1400 700,1250 S1000,1100 1100,1250' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,1380 C200,1230 400,1530 700,1380 S1000,1230 1100,1380' stroke='url(%23g2)' opacity='0.3'/></g></svg>");
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1414' preserveAspectRatio='none'><defs><linearGradient id='waveGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.04' /><stop offset='50%25' stop-color='%23004d40' stop-opacity='0.01' /><stop offset='100%25' stop-color='%237b0000' stop-opacity='0.04' /></linearGradient><pattern id='microText' x='0' y='0' width='350' height='100' patternUnits='userSpaceOnUse' patternTransform='rotate(-15)'><text x='10' y='30' font-family='Arial, sans-serif' font-size='7' font-weight='600' fill='black' fill-opacity='0.015'>Injuries and Rehabilitation Syndicate</text><text x='150' y='80' font-family='Arial, sans-serif' font-size='7' font-weight='600' fill='black' fill-opacity='0.015'>Injuries and Rehabilitation Syndicate</text></pattern><radialGradient id='securityZone' cx='50%25' cy='50%25' r='40%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.05' /><stop offset='100%25' stop-color='%237b0000' stop-opacity='0' /></radialGradient></defs><rect width='100%25' height='100%25' fill='url(%23microText)' /><circle cx='500' cy='350' r='250' fill='url(%23securityZone)' /><circle cx='200' cy='1100' r='180' fill='url(%23securityZone)' opacity='0.5'/><circle cx='800' cy='1100' r='180' fill='url(%23securityZone)' opacity='0.5'/><g fill='none' stroke='url(%23waveGrad)' stroke-width='30' stroke-linecap='round' filter='blur(35px)'><path d='M-100,300 C200,100 400,500 600,300 S1000,100 1100,300' opacity='0.4'/><path d='M-100,700 C200,500 400,900 600,700 S1000,500 1100,700' opacity='0.3'/><path d='M-100,1100 C200,900 400,1300 600,1100 S1000,900 1100,1100' opacity='0.4'/></g><g fill='none' stroke='%23004d40' stroke-width='0.6' opacity='0.1' stroke-dasharray='1 2'><path d='M-50,100 C150,250 350,50 550,150 S850,250 1050,100' /><path d='M-50,400 C150,550 350,350 550,450 S850,550 1050,400' /><path d='M-50,700 C150,850 350,650 550,750 S850,850 1050,700' /><path d='M-50,1000 C150,1150 350,950 550,1050 S850,1150 1050,1000' /></g></svg>");
             background-size: cover;
             pointer-events: none; z-index: 1;
         }
@@ -281,16 +284,22 @@
             <strong>ملاحظة زمنية:</strong> صلاحية التصريح سنة واحدة من تاريخه.
         </div>
 
+        <button class="btn-action btn-storage" onclick="selectDirectory()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path></svg>
+            تحديد مجلد التخزين
+            <span>Set Storage Folder</span>
+        </button>
+
         <div class="action-controls">
-            <button class="btn-action btn-print-only" onclick="window.print()">
+            <button class="btn-action btn-print-only" onclick="handlePrint()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
-                طباعة فقط
-                <span>Print Only</span>
+                طباعة وحفظ
+                <span>Print & Save</span>
             </button>
-            <button class="btn-action btn-save-as" onclick="window.print()">
+            <button class="btn-action btn-save-as" onclick="saveDocumentLocally()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                حفظ باسم
-                <span>Save As</span>
+                حفظ تلقائي
+                <span>Auto Save</span>
             </button>
         </div>
     </div>
@@ -384,7 +393,7 @@
                         </div>
                     </div>
 
-                    <div class="data-item">
+                    <div class="data-item" style="grid-column: span 2;">
                         <div class="label-pair">
                             <span class="label-ar">المؤهل الدراسي</span>
                             <span class="label-en">Academic Qualification</span>
@@ -421,17 +430,17 @@
                     <div class="signature-box">
                         <small>يعتمد،،،</small>
                         <span class="sig-line"></span>
-                        <p>رئيس لجنة النقابة للإصابات والتأهيل</p>
-                        <small>Chairman of the Syndicate Committee for Injuries and Rehabilitation</small>
+                        <p>رئيس لجنة النقابة</p>
+                        <small>Chairman of the Syndicate Committee</small>
                     </div>
                 </div>
 
                 <div class="verification-footer">
-                    يمكن التحقق من صحة هذا التصريح عبر بوابة التحقق الإلكترونية باستخدام رقم التصريح أو رقم الهوية الوطنية:
+                    يمكن التحقق من صحة هذا التصريح عبر بوابة التحقق الإلكترونية باستخدام رقم التصريح أو رقم الهوية الوطنية، أو عبر البريد الإلكتروني <span id="view-email-ar" style="font-weight: bold; color: var(--primary-dark);"></span> :
                     <strong>irseg.org/verify</strong>
                     <br>
                     <span style="direction: ltr; display: inline-block; margin-top: 3px;">
-                        Verification can be authenticated via the online portal using the permit or national ID number:
+                        Verification can be authenticated via the online portal using the permit or national ID number, or via email <span id="view-email-en" style="font-weight: bold; color: var(--primary-dark);"></span>:
                         <strong>irseg.org/verify</strong>
                     </span>
                 </div>
@@ -503,9 +512,8 @@
             ],
             qualifications: [
                 { ar: "بكالوريوس في علوم الرياضة", en: "Bachelor of Sports Sciences" },
-                { ar: "دبلوم الدراسات العليا في علوم الرياضة", en: "Post-Graduate Diploma in Sports Sciences" },
-                { ar: "ماجستير في علوم الرياضة", en: "Master of Sports Sciences" },
-                { ar: "دكتوراه في علوم الرياضة", en: "PhD in Sports Sciences" }
+                { ar: "ماجستير في علوم الرياضة – صحة رياضية", en: "Master of Sports Sciences – Sports Health" },
+                { ar: "دكتوراه في علوم الرياضة – صحة رياضية", en: "PhD in Sports Sciences – Sports Health" }
             ],
             ranks: [
                 { ar: "مساعد أخصائي", en: "Assistant Specialist" },
@@ -619,18 +627,31 @@
             }
         }
 
-        // تحديث فرع النقابة في الهيدر
+        // تحديث فرع النقابة والبريد الإلكتروني
         function updateBranch(val) {
             const arSpan = document.getElementById("view-branch-ar");
             const enSpan = document.getElementById("view-branch-en");
+            const emailAr = document.getElementById("view-email-ar");
+            const emailEn = document.getElementById("view-email-en");
+
+            let branchEn = "";
             if (val.includes(" - ")) {
                 const parts = val.split(" - ");
                 arSpan.innerText = parts[0];
                 enSpan.innerText = parts[1];
+                branchEn = parts[1];
             } else {
                 arSpan.innerText = "";
                 enSpan.innerText = "";
             }
+
+            // تحديث البريد الإلكتروني ديناميكياً
+            let email = "info@irseg.org"; // الافتراضي
+            if (branchEn === "Cairo") email = "info@irseg.org";
+            else if (branchEn === "Monufia") email = "menofia@irseg.org";
+
+            emailAr.innerText = email;
+            emailEn.innerText = email;
         }
 
         // معالجة وتحميل الصور (الشعار و QR)
@@ -645,6 +666,52 @@
                 output.style.border = "none";
             }
             reader.readAsDataURL(file);
+        }
+
+        // --- نظام التخزين المحلي الآلي (Automated Local Storage System) ---
+        let storageDirHandle = null;
+
+        async function selectDirectory() {
+            try {
+                storageDirHandle = await window.showDirectoryPicker();
+                alert('تم تحديد مجلد التخزين بنجاح. سيتم الآن حفظ الملفات تلقائياً.');
+            } catch (err) {
+                console.error('Directory selection failed:', err);
+            }
+        }
+
+        async function saveDocumentLocally() {
+            if (!storageDirHandle) {
+                alert('يرجى تحديد مجلد التخزين أولاً.\nPlease select a storage folder first.');
+                return;
+            }
+
+            const nationalId = document.getElementById('nid-no').value;
+            if (!nationalId || nationalId.length !== 14) {
+                alert('يرجى إدخال رقم الهوية الوطنية بشكل صحيح (14 رقم).\nPlease enter a valid 14-digit National ID.');
+                return;
+            }
+
+            try {
+                const fileName = `${nationalId}.html`;
+                const fileHandle = await storageDirHandle.getFileHandle(fileName, { create: true });
+                const writable = await fileHandle.createWritable();
+
+                // Clone the full HTML content
+                const content = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+
+                await writable.write(content);
+                await writable.close();
+                console.log(`Document saved successfully as ${fileName}`);
+            } catch (err) {
+                console.error('Save failed:', err);
+                alert('فشل في حفظ الملف. تأكد من منح الأذونات اللازمة.');
+            }
+        }
+
+        async function handlePrint() {
+            await saveDocumentLocally();
+            window.print();
         }
 
         // الأتمتة الزمنية عند تحميل الصفحة
