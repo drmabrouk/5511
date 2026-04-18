@@ -128,10 +128,10 @@
             display: flex; flex-direction: column;
         }
 
-        /* --- نظام خلفية مائية أمنية مطورة (V3.0 Advanced Multi-Layer Security Watermark) --- */
+        /* --- علامة مائية احترافية (V4.0 Professional Wave-Style Watermark) --- */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1414' preserveAspectRatio='none'><defs><linearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.025' /><stop offset='50%25' stop-color='%23004d40' stop-opacity='0.01' /><stop offset='100%25' stop-color='%237b0000' stop-opacity='0.025' /></linearGradient><linearGradient id='waveGrad2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'><stop offset='0%25' stop-color='%23004d40' stop-opacity='0.015' /><stop offset='50%25' stop-color='%237b0000' stop-opacity='0.02' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.015' /></linearGradient><pattern id='microRep' x='0' y='0' width='250' height='60' patternUnits='userSpaceOnUse' patternTransform='rotate(-20)'><text x='10' y='20' font-family='Tajawal, sans-serif' font-size='5.5' font-weight='800' fill='%237b0000' fill-opacity='0.012'>نقابة الإصابات والتأهيل IRSEG</text><text x='110' y='50' font-family='Tajawal, sans-serif' font-size='5.5' font-weight='800' fill='%23004d40' fill-opacity='0.012'>نقابة الإصابات والتأهيل IRSEG</text></pattern><radialGradient id='glow' cx='50%25' cy='50%25' r='50%25'><stop offset='0%25' stop-color='white' stop-opacity='1' /><stop offset='100%25' stop-color='white' stop-opacity='0' /></radialGradient></defs><rect width='100%25' height='100%25' fill='url(%23microRep)' /><g filter='blur(40px)' opacity='0.6'><path d='M-100,200 Q150,50 400,200 T900,200 T1200,200' fill='none' stroke='url(%23waveGrad1)' stroke-width='80'/><path d='M-100,600 Q200,800 500,600 T1100,600' fill='none' stroke='url(%23waveGrad2)' stroke-width='100'/><path d='M-100,1000 Q150,1200 400,1000 T900,1000 T1200,1000' fill='none' stroke='url(%23waveGrad1)' stroke-width='120'/></g><g fill='none' stroke='%23004d40' stroke-width='0.4' opacity='0.08'><path d='M0,50 C200,150 400,-50 600,50 S1000,150 1200,50' /><path d='M0,350 C200,450 400,250 600,350 S1000,450 1200,350' /><path d='M0,650 C200,750 400,550 600,650 S1000,750 1200,650' /><path d='M0,950 C200,1050 400,850 600,950 S1000,1050 1200,950' /><path d='M0,1250 C200,1350 400,1150 600,1250 S1000,1350 1200,1250' /></g><circle cx='500' cy='707' r='600' fill='url(%23glow)' opacity='0.4'/></svg>");
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1414' preserveAspectRatio='none'><defs><linearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.015' /><stop offset='50%25' stop-color='%23004d40' stop-opacity='0.01' /><stop offset='100%25' stop-color='%237b0000' stop-opacity='0.015' /></linearGradient><linearGradient id='grad2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'><stop offset='0%25' stop-color='%23004d40' stop-opacity='0.012' /><stop offset='50%25' stop-color='%237b0000' stop-opacity='0.015' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.012' /></linearGradient></defs><g filter='blur(80px)' opacity='0.7'><path d='M-200,300 Q150,-100 500,300 T1200,300' fill='none' stroke='url(%23grad1)' stroke-width='400'/><path d='M-200,1100 Q150,700 500,1100 T1200,1100' fill='none' stroke='url(%23grad2)' stroke-width='500'/><path d='M-200,700 Q400,1000 1200,700' fill='none' stroke='url(%23grad1)' stroke-width='300'/></g></svg>");
             background-size: cover;
             pointer-events: none; z-index: 1;
         }
@@ -161,12 +161,12 @@
         .header-text.en { text-align: left; font-family: 'Cambria', 'Georgia', serif; font-size: 11.5pt; line-height: 1.4; direction: ltr; }
 
         .logo-area { width: 24%; text-align: center; align-self: center; }
-        #logo-preview { max-width: 80px; max-height: 80px; object-fit: contain; }
+        #logo-preview { max-width: 100px; max-height: 100px; object-fit: contain; }
 
         /* عنوان الوثيقة */
         .doc-title { text-align: center; margin-bottom: 15px; }
-        .doc-title h1 { margin: 0; color: var(--primary-dark); font-size: 24pt; font-family: 'Amiri', serif; font-weight: 700; letter-spacing: 0.5px; }
-        .doc-title p { margin: 2px 0 0; font-size: 14pt; color: #555; font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px; }
+        .doc-title h1 { margin: 0; color: var(--primary-dark); font-size: 28pt; font-family: 'Amiri', serif; font-weight: 700; letter-spacing: 0.5px; }
+        .doc-title p { margin: 2px 0 0; font-size: 16pt; color: #555; font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px; }
 
         /* بيانات العضو الرئيسية */
         .member-name-zone { text-align: center; margin-bottom: 15px; position: relative; padding: 5px 0; }
@@ -296,11 +296,15 @@
                 </div>
                 <div class="input-group">
                     <label>الاسم الرباعي (عربي)</label>
-                    <input type="text" id="name-ar" placeholder="محمد أحمد محمود علي" oninput="updateText('view-name-ar', this.value)">
+                    <input type="text" id="name-ar" placeholder="محمد أحمد محمود علي" oninput="updateNameDisplay()">
                 </div>
                 <div class="input-group">
                     <label>Full Name (English)</label>
-                    <input type="text" id="name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateText('view-name-en', this.value)">
+                    <input type="text" id="name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateNameDisplay()">
+                </div>
+                <div class="input-group">
+                    <label>كود العضو / Member Code</label>
+                    <input type="text" id="code-no" placeholder="IRSEG-2024-XXXX" oninput="updateText('code-no', this.value)">
                 </div>
             </fieldset>
 
@@ -308,9 +312,12 @@
                 <legend>البيانات الأكاديمية والمهنية</legend>
                 <div class="input-group">
                     <label>اسم الجامعة / University</label>
-                    <select id="uni" onchange="updateText('uni', this.value)">
-                        <option value="">جاري التحميل...</option>
-                    </select>
+                    <div style="display: flex; gap: 5px;">
+                        <select id="uni" style="flex-grow: 1;" onchange="handleUniChange(this.value)">
+                            <option value="">جاري التحميل...</option>
+                        </select>
+                        <input type="text" id="uni-manual" style="display: none; flex-grow: 1;" placeholder="أدخل اسم الجامعة..." oninput="updateText('uni', this.value)">
+                    </div>
                 </div>
                 <div class="input-group">
                     <label>المؤهل الدراسي / Qualification</label>
@@ -319,13 +326,26 @@
                     </select>
                 </div>
                 <div class="input-group">
+                    <label>تخصص المؤهل / Academic Specialization</label>
+                    <div style="display: flex; gap: 5px;">
+                        <select id="acad-spec" style="flex-grow: 1;" onchange="handleAcadSpecChange(this.value)">
+                            <option value="">جاري التحميل...</option>
+                        </select>
+                        <input type="text" id="acad-spec-manual" style="display: none; flex-grow: 1;" placeholder="أدخل التخصص..." oninput="updateText('acad-spec', this.value)">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>تاريخ الحصول على المؤهل / Qual. Date</label>
+                    <input type="text" id="qual-date" placeholder="يونيو 2020" oninput="updateText('qual-date', this.value)">
+                </div>
+                <div class="input-group">
                     <label>الدرجة المهنية / Rank</label>
                     <select id="rank" onchange="updateRankAndSpec()">
                         <option value="">جاري التحميل...</option>
                     </select>
                 </div>
                 <div class="input-group">
-                    <label>التخصص / Specialization</label>
+                    <label>التخصص المهني / Prof. Specialization</label>
                     <select id="spec" onchange="updateRankAndSpec()">
                         <option value="">جاري التحميل...</option>
                     </select>
@@ -424,7 +444,7 @@
                 <div class="member-name-zone">
                     <div id="view-name-ar">اسم العضو الكريم الرباعي</div>
                     <div id="view-name-en">Member Full English Name</div>
-                    <div class="nationality-text">مصري الجنسية / Egyptian Nationality</div>
+                    <div class="nationality-text" id="view-code-no">كود العضو / Member Code</div>
                 </div>
 
                 <div class="data-grid">
@@ -452,16 +472,16 @@
 
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">تاريخ انتهاء التصريح</span>
-                            <span class="label-en">Permit Date of Expiry</span>
+                            <span class="label-ar">رقم العضوية النقابية</span>
+                            <span class="label-en">Membership Number</span>
                         </div>
                         <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-expiry-date-ar" style="color: #d32f2f; font-size: 12pt;">--/--/----</span>
-                            <span class="value-en value-num-en" id="view-expiry-date-en" style="color: #d32f2f; font-size: 10pt;">--/--/----</span>
+                            <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-m-no-en">---</span>
                         </div>
                     </div>
 
-                    <div class="data-item">
+                    <div class="data-item" style="grid-column: span 2;">
                         <div class="label-pair">
                             <span class="label-ar">رقم الهوية الوطنية</span>
                             <span class="label-en">National ID Number</span>
@@ -469,17 +489,6 @@
                         <div class="value-stack">
                             <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
                             <span class="value-en value-num-en" id="view-nid-no-en">---</span>
-                        </div>
-                    </div>
-
-                    <div class="data-item">
-                        <div class="label-pair">
-                            <span class="label-ar">رقم العضوية النقابية</span>
-                            <span class="label-en">Membership Number</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-m-no-en">---</span>
                         </div>
                     </div>
 
@@ -504,26 +513,54 @@
                             <span class="value-en" id="view-uni-en">---</span>
                         </div>
                     </div>
+
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">تخصص المؤهل</span>
+                            <span class="label-en">Academic Specialization</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-acad-spec-ar">---</span>
+                            <span class="value-en" id="view-acad-spec-en">---</span>
+                        </div>
+                    </div>
+
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">تاريخ الحصول عليه</span>
+                            <span class="label-en">Qualification Date</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-qual-date-ar">---</span>
+                            <span class="value-en" id="view-qual-date-en">---</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="legal-text">
                     <div id="cert-paragraph-ar">
-                        تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد رسمياً بسجلاتنا ومصرّح له بمزاولة المهنة في حدود تخصصه المهني المرخص له، وذلك وفقاً لأحكام القانون رقم ٢١٣ لسنة ٢٠١٧ ولائحة لجنة النقابة المهنية للإصابات والتأهيل. يلتزم حامل التصريح بالمعايير الأخلاقية والمهنية المقررة، مع الحظر التام لممارسة مهنة الطب أو إجراء أي تشخيص أو علاج طبي أو إنشاء منشآت خاصة دون الحصول على موافقة مسبقة من الجهات المختصة. للتواصل الرسمي مع النقابة عبر البريد الإلكتروني: <span id="view-email-ar" style="font-weight: bold; color: var(--primary-dark);">---</span>
+                        تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد رسمياً بسجلاتنا ومصرح له بمزاولة المهنة في حدود تخصصه المهني المرخص، وفقاً لأحكام القانون رقم ٢١٣ لسنة ٢٠١٧ ولائحة النقابة. يلتزم حامل التصريح بالمعايير المهنية والأخلاقية، مع الحظر التام لممارسة مهنة الطب أو التشخيص أو العلاج الطبي دون موافقة الجهات المختصة. للتواصل: <span id="view-email-ar" style="font-weight: bold; color: var(--primary-dark);">---</span>
                     </div>
                     <small style="direction: ltr; display: block; text-align: left; margin-top: 8px;" id="cert-paragraph-en">
-                        The Injuries and Rehabilitation Syndicate certifies that the individual is officially registered and authorized to practice within their specialty, in compliance with Law No. 213 of 2017 and the bylaws of the Professional Syndicate Committee for Injuries and Rehabilitation. The holder shall adhere to established ethical and professional standards. Practicing medicine, medical diagnosis, treatment, or establishing private facilities without prior approval from competent authorities is strictly prohibited. Official communication via email: <span id="view-email-en" style="font-weight: bold; color: var(--primary-dark);">---</span>
+                        The Syndicate certifies that the individual is officially registered and authorized to practice within their licensed specialty, per Law No. 213 of 2017. The holder must adhere to professional ethics; practicing medicine or medical diagnosis/treatment without prior official approval is strictly prohibited. Contact: <span id="view-email-en" style="font-weight: bold; color: var(--primary-dark);">---</span>
                     </small>
                 </div>
 
                 <div class="footer-assets">
-                    <div class="qr-box">
-                        <img id="qr-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><rect x='10' y='10' width='30' height='30' fill='%23333'/><rect x='60' y='10' width='30' height='30' fill='%23333'/><rect x='10' y='60' width='30' height='30' fill='%23333'/><rect x='50' y='50' width='10' height='10' fill='%23333'/><rect x='70' y='70' width='20' height='20' fill='%23333'/></svg>" alt="QR">
-                        <p>للتلفّق الرقمي<br>Digital Verification</p>
+                    <div class="qr-area" style="display: flex; align-items: flex-end; gap: 15px;">
+                        <div class="qr-box">
+                            <img id="qr-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><rect x='10' y='10' width='30' height='30' fill='%23333'/><rect x='60' y='10' width='30' height='30' fill='%23333'/><rect x='10' y='60' width='30' height='30' fill='%23333'/><rect x='50' y='50' width='10' height='10' fill='%23333'/><rect x='70' y='70' width='20' height='20' fill='%23333'/></svg>" alt="QR">
+                            <p style="font-size: 6.5pt;">التوثيق الرقمي لاعتماد الشهادات<br>Digital Verification for Certificate Authentication</p>
+                        </div>
+                        <div class="qr-metadata" style="text-align: right; color: #555; font-size: 8.5pt; font-weight: 700; border-right: 2px solid #eee; padding-right: 10px; margin-bottom: 25px;">
+                             <div id="view-footer-issue">تحريراً في: --/--/----</div>
+                             <div id="view-footer-expiry" style="color: var(--primary-dark); margin-top: 3px;">صالح حتى: --/--/----</div>
+                        </div>
                     </div>
                     <div class="signature-box">
                         <small>يعتمد،،،</small>
                         <span class="sig-line"></span>
-                        <p>رئيس لجنة النقابة</p>
+                        <p>رئيس مجلس إدارة لجنة النقابة</p>
                         <small>Chairman of the Syndicate Committee</small>
                     </div>
                 </div>
@@ -571,7 +608,9 @@
                 { ar: "جامعة الأقصر", en: "Luxor University" },
                 { ar: "جامعة دمنهور", en: "Damanhour University" },
                 { ar: "جامعة الفيوم", en: "Fayoum University" },
-                { ar: "جامعة دولية", en: "International University" }
+                { ar: "جامعة العاصمة", en: "Capital University" },
+                { ar: "جامعة دولية", en: "International University" },
+                { ar: "إدخال يدوي...", en: "Manual Entry..." }
             ],
             branches: [
                 { ar: "القاهرة", en: "Cairo" },
@@ -619,6 +658,21 @@
                 { ar: "العلاج بالتدليك الرياضي", en: "Sports Massage Therapy" },
                 { ar: "التأهيل المائي", en: "Aquatic Rehabilitation" },
                 { ar: "الفسيولوجيا الرياضية", en: "Sports Physiology" }
+            ],
+            academic_specs: [
+                { ar: "علوم الرياضة", en: "Sports Sciences" },
+                { ar: "التربية الرياضية", en: "Physical Education" },
+                { ar: "الفسيولوجيا الرياضية", en: "Sports Physiology" },
+                { ar: "التغذية الرياضية", en: "Sports Nutrition" },
+                { ar: "علوم الصحة الرياضية", en: "Sports Health Sciences" },
+                { ar: "الإصابات الرياضية والتأهيل", en: "Sports Injuries and Rehabilitation" },
+                { ar: "الإصابات والتأهيل", en: "Injuries and Rehabilitation" },
+                { ar: "العلاج الرياضي", en: "Sports Therapy" },
+                { ar: "التأهيل الرياضي", en: "Sports Rehabilitation" },
+                { ar: "العلوم البيولوجية والصحة الرياضية", en: "Biological Sciences and Sports Health" },
+                { ar: "التأهيل المائي", en: "Aquatic Rehabilitation" },
+                { ar: "تأهيل ذوي الاحتياجات الخاصة", en: "Special Needs Rehabilitation" },
+                { ar: "إدخال يدوي...", en: "Manual Entry..." }
             ]
         };
 
@@ -640,6 +694,31 @@
             populate("qual", DATA_REGISTRY.qualifications, " | ");
             populate("rank", DATA_REGISTRY.ranks);
             populate("spec", DATA_REGISTRY.specializations);
+            populate("acad-spec", DATA_REGISTRY.academic_specs);
+        }
+
+        // التعامل مع الإدخال اليدوي للجامعة
+        function handleUniChange(val) {
+            const manualInput = document.getElementById('uni-manual');
+            if (val.includes("إدخال يدوي") || val.includes("Manual Entry")) {
+                manualInput.style.display = 'block';
+                updateText('uni', "");
+            } else {
+                manualInput.style.display = 'none';
+                updateText('uni', val);
+            }
+        }
+
+        // التعامل مع الإدخال اليدوي للتخصص الأكاديمي
+        function handleAcadSpecChange(val) {
+            const manualInput = document.getElementById('acad-spec-manual');
+            if (val.includes("إدخال يدوي") || val.includes("Manual Entry")) {
+                manualInput.style.display = 'block';
+                updateText('acad-spec', "");
+            } else {
+                manualInput.style.display = 'none';
+                updateText('acad-spec', val);
+            }
         }
 
         // دالة تحويل الأرقام إلى الأرقام العربية (المشرقية)
@@ -654,6 +733,13 @@
         function updateText(id, val) {
             const targetAr = document.getElementById('view-' + id + '-ar');
             const targetEn = document.getElementById('view-' + id + '-en');
+
+            // التحديث الخاص للكود
+            if (id === 'code-no') {
+                const target = document.getElementById('view-code-no');
+                if (target) target.innerText = val ? `كود العضو: ${toArabicDigits(val)} / Member Code: ${val}` : 'كود العضو / Member Code';
+                return;
+            }
 
             // التحديث الخاص لبيانات الفوتر (رقم التصريح والهوية)
             if (id === 'p-no') {
@@ -718,6 +804,28 @@
             enSpan.innerText = enSpec ? `${enRank} (${enSpec})` : enRank;
         }
 
+        // دالة تحديث عرض الاسم مع معالجة لقب دكتور
+        function updateNameDisplay() {
+            const nameArInput = document.getElementById('name-ar').value;
+            const nameEnInput = document.getElementById('name-en').value;
+            const qualVal = document.getElementById('qual').value;
+
+            const targetAr = document.getElementById('view-name-ar');
+            const targetEn = document.getElementById('view-name-en');
+
+            let prefixAr = "";
+            let prefixEn = "";
+
+            // إضافة لقب د. في حال كان المؤهل دكتوراه
+            if (qualVal.includes("دكتوراه") || qualVal.includes("PhD")) {
+                prefixAr = "د. ";
+                prefixEn = "Dr. ";
+            }
+
+            targetAr.innerText = nameArInput ? (prefixAr + nameArInput) : "اسم العضو الكريم الرباعي";
+            targetEn.innerText = nameEnInput ? (prefixEn + nameEnInput) : "Member Full English Name";
+        }
+
         // تحديث معلومات المؤهل الدراسي
         function updateQualInfo() {
             const val = document.getElementById('qual').value;
@@ -731,6 +839,7 @@
                 arSpan.innerText = val || '---';
                 enSpan.innerText = val || '---';
             }
+            updateNameDisplay(); // تحديث الاسم لاحتمالية تغير اللقب
         }
 
         // تحديث فرع النقابة والبريد الإلكتروني
@@ -785,6 +894,7 @@
         let DATABASE = [];
         let currentDbName = "syndicate_database.json";
         let APP_CONFIG = { logo: null };
+        let CURRENT_EXPIRY_DATE = ""; // لتخزين تاريخ انتهاء التصريح الحالي
 
         // استخدام IndexedDB لحفظ مقبض المجلد (Directory Handle) بشكل دائم
         const DB_SESSION_NAME = "SyndicateSession";
@@ -979,7 +1089,7 @@
                 nid: document.getElementById('nid-no').value,
                 nameAr: document.getElementById('name-ar').value,
                 nameEn: document.getElementById('name-en').value,
-                uni: document.getElementById('uni').value,
+                codeNo: document.getElementById('code-no').value,
                 qual: document.getElementById('qual').value,
                 rank: document.getElementById('rank').value,
                 spec: document.getElementById('spec').value,
@@ -987,7 +1097,7 @@
                 pNo: document.getElementById('p-no').value,
                 rNo: document.getElementById('r-no').value,
                 mNo: document.getElementById('m-no').value,
-                expiryDate: document.getElementById('view-expiry-date-en').innerText,
+                expiryDate: CURRENT_EXPIRY_DATE,
                 timestamp: new Date().toISOString()
             };
 
@@ -1067,8 +1177,11 @@
             document.getElementById('nid-no').value = record.nid;
             document.getElementById('name-ar').value = record.nameAr || '';
             document.getElementById('name-en').value = record.nameEn || '';
+            document.getElementById('code-no').value = record.codeNo || '';
             document.getElementById('uni').value = record.uni || '';
             document.getElementById('qual').value = record.qual || '';
+            document.getElementById('acad-spec').value = record.acadSpec || '';
+            document.getElementById('qual-date').value = record.qualDate || '';
             document.getElementById('rank').value = record.rank || '';
             document.getElementById('spec').value = record.spec || '';
             document.getElementById('branch').value = record.branch || '';
@@ -1078,10 +1191,12 @@
 
             // تحديث المعاينة
             updateText('nid-no', record.nid);
-            updateText('view-name-ar', record.nameAr);
-            updateText('view-name-en', record.nameEn);
+            updateNameDisplay();
+            updateText('code-no', record.codeNo);
             updateText('uni', record.uni);
             updateQualInfo();
+            updateText('acad-spec', record.acadSpec);
+            updateText('qual-date', record.qualDate);
             updateRankAndSpec();
             updateBranch(record.branch);
             updateText('p-no', record.pNo);
@@ -1090,8 +1205,8 @@
 
             // استعادة تاريخ انتهاء التصريح من السجل
             if (record.expiryDate) {
-                document.getElementById('view-expiry-date-ar').innerText = toArabicDigits(record.expiryDate);
-                document.getElementById('view-expiry-date-en').innerText = record.expiryDate;
+                CURRENT_EXPIRY_DATE = record.expiryDate;
+                document.getElementById('view-footer-expiry').innerText = `صالح حتى: ${toArabicDigits(record.expiryDate)} / Valid until: ${record.expiryDate}`;
             }
 
             document.getElementById('search-results').style.display = 'none';
@@ -1114,8 +1229,10 @@
             };
 
             const expiryFormatted = formatDate(expiry);
-            document.getElementById('view-expiry-date-ar').innerText = toArabicDigits(expiryFormatted);
-            document.getElementById('view-expiry-date-en').innerText = expiryFormatted;
+            const todayFormatted = formatDate(today);
+            CURRENT_EXPIRY_DATE = expiryFormatted;
+            document.getElementById('view-footer-expiry').innerText = `صالح حتى: ${toArabicDigits(expiryFormatted)} / Valid until: ${expiryFormatted}`;
+            document.getElementById('view-footer-issue').innerText = `تحريراً في: ${toArabicDigits(todayFormatted)} / Issued on: ${todayFormatted}`;
         };
     </script>
 </body>
