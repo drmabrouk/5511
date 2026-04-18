@@ -128,11 +128,11 @@
             display: flex; flex-direction: column;
         }
 
-        /* --- علامة مائية احترافية (V4.0 Professional Wave-Style Watermark) --- */
+        /* --- علامة مائية احترافية (V5.0 Multi-Layer Secure Watermark) --- */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1414' preserveAspectRatio='none'><defs><linearGradient id='grad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.015' /><stop offset='50%25' stop-color='%23004d40' stop-opacity='0.01' /><stop offset='100%25' stop-color='%237b0000' stop-opacity='0.015' /></linearGradient><linearGradient id='grad2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'><stop offset='0%25' stop-color='%23004d40' stop-opacity='0.012' /><stop offset='50%25' stop-color='%237b0000' stop-opacity='0.015' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.012' /></linearGradient></defs><g filter='blur(80px)' opacity='0.7'><path d='M-200,300 Q150,-100 500,300 T1200,300' fill='none' stroke='url(%23grad1)' stroke-width='400'/><path d='M-200,1100 Q150,700 500,1100 T1200,1100' fill='none' stroke='url(%23grad2)' stroke-width='500'/><path d='M-200,700 Q400,1000 1200,700' fill='none' stroke='url(%23grad1)' stroke-width='300'/></g></svg>");
-            background-size: cover;
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1414'><defs><pattern id='textPattern' x='0' y='0' width='250' height='120' patternUnits='userSpaceOnUse' patternTransform='rotate(-25)'><text x='0' y='60' font-family='Arial, sans-serif' font-size='9' fill='%237b0000' fill-opacity='0.05'>Injuries and Rehabilitation Syndicate</text></pattern><linearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.02' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.02' /></linearGradient><filter id='softBlur'><feGaussianBlur in='SourceGraphic' stdDeviation='50'/></filter></defs><rect width='100%25' height='100%25' fill='url(%23textPattern)'/><g filter='url(%23softBlur)' opacity='0.8'><path d='M-200,450 Q250,150 500,450 T1200,450' fill='none' stroke='url(%23waveGrad1)' stroke-width='350'/><path d='M-200,1050 Q300,750 600,1050 T1300,1050' fill='none' stroke='%23004d40' stroke-opacity='0.03' stroke-width='450'/><path d='M-200,750 Q400,1100 1200,750' fill='none' stroke='%237b0000' stroke-opacity='0.02' stroke-width='300'/></g></svg>");
+            background-size: 100% 100%;
             pointer-events: none; z-index: 1;
         }
 
@@ -209,9 +209,9 @@
             align-items: flex-end; padding-top: 10px; border-top: 1px solid #eee;
         }
 
-        .qr-box { width: 110px; text-align: center; }
+        .qr-box { text-align: center; }
         #qr-preview { width: 90px; height: 90px; border: 1px solid #eaeaea; padding: 2px; background: #fff; }
-        .qr-box p { font-size: 7.5pt; margin: 5px 0 0; color: #777; line-height: 1.2; }
+        .qr-box p { font-size: 8.5pt; margin: 5px 0 0; color: #444; font-weight: 700; }
 
         .signature-box { text-align: center; min-width: 200px; color: var(--text-dark); }
         .signature-box .sig-line { border-top: 1.5px solid #333; margin-top: 45px; width: 100%; display: block; }
@@ -448,6 +448,7 @@
                 </div>
 
                 <div class="data-grid">
+                    <!-- Professional Rank & Specialization (Full Width) -->
                     <div class="data-item" style="grid-column: span 2; background: rgba(123, 0, 0, 0.03); padding: 12px; border-radius: 4px; margin-bottom: 5px;">
                         <div class="label-pair">
                             <span class="label-ar">الدرجة المهنية والتخصص</span>
@@ -459,6 +460,7 @@
                         </div>
                     </div>
 
+                    <!-- Row 1: Permit Number <-> Member Code -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">رقم التصريح</span>
@@ -469,7 +471,28 @@
                             <span class="value-en value-num-en" id="view-p-no-en">---</span>
                         </div>
                     </div>
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">كود العضو</span>
+                            <span class="label-en">Member Code</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-code-no-ar">---</span>
+                            <span class="value-en" id="view-code-no-en">---</span>
+                        </div>
+                    </div>
 
+                    <!-- Row 2: National ID Number <-> Syndicate Membership Number -->
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">رقم الهوية الوطنية</span>
+                            <span class="label-en">National ID Number</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
+                        </div>
+                    </div>
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">رقم العضوية النقابية</span>
@@ -481,17 +504,7 @@
                         </div>
                     </div>
 
-                    <div class="data-item" style="grid-column: span 2;">
-                        <div class="label-pair">
-                            <span class="label-ar">رقم الهوية الوطنية</span>
-                            <span class="label-en">National ID Number</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
-                        </div>
-                    </div>
-
+                    <!-- Row 3: Academic Qualification <-> University Name -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">المؤهل الدراسي</span>
@@ -502,7 +515,6 @@
                             <span class="value-en" id="view-qual-en">---</span>
                         </div>
                     </div>
-
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">اسم الجامعة</span>
@@ -514,6 +526,7 @@
                         </div>
                     </div>
 
+                    <!-- Row 4: Academic Specialization <-> Qualification Date -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">تخصص المؤهل</span>
@@ -524,7 +537,6 @@
                             <span class="value-en" id="view-acad-spec-en">---</span>
                         </div>
                     </div>
-
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">تاريخ الحصول عليه</span>
@@ -539,29 +551,28 @@
 
                 <div class="legal-text">
                     <div id="cert-paragraph-ar">
-                        تشهد نقابة الإصابات والتأهيل بأن المذكور أعلاه مقيد رسمياً بسجلاتنا ومصرح له بمزاولة المهنة في حدود تخصصه المهني المرخص، وفقاً لأحكام القانون رقم ٢١٣ لسنة ٢٠١٧ ولائحة النقابة. يلتزم حامل التصريح بالمعايير المهنية والأخلاقية، مع الحظر التام لممارسة مهنة الطب أو التشخيص أو العلاج الطبي دون موافقة الجهات المختصة. للتواصل: <span id="view-email-ar" style="font-weight: bold; color: var(--primary-dark);">---</span>
+                        تشهد اللجنة النقابية المهنية للإصابات والتأهيل بأن المذكور أعلاه مقيد رسمياً بسجلاتها ومصرح له بمزاولة المهنة في حدود تخصصه المهني والأكاديمي. تخضع مزاولة المهنة لأحكام القانون رقم ٢١٣ لسنة ٢٠١٧ ولائحة النقابة. ولا يعد هذا التصريح بأي حال من الأحوال تصريحاً بممارسة مهنة الطب أو إنشاء أو إدارة أي منشأة خاصة إلا بعد الحصول على كافة التراخيص والموافقات القانونية المطلوبة من الجهات المختصة. للتواصل: <span id="view-email-ar" style="font-weight: bold; color: var(--primary-dark);">---</span>
                     </div>
                     <small style="direction: ltr; display: block; text-align: left; margin-top: 8px;" id="cert-paragraph-en">
-                        The Syndicate certifies that the individual is officially registered and authorized to practice within their licensed specialty, per Law No. 213 of 2017. The holder must adhere to professional ethics; practicing medicine or medical diagnosis/treatment without prior official approval is strictly prohibited. Contact: <span id="view-email-en" style="font-weight: bold; color: var(--primary-dark);">---</span>
+                        The Professional Syndicate Committee for Injuries and Rehabilitation certifies that the individual named above is officially registered in its records and is authorized to practice within the scope of their professional and academic specialization. The scope of practice is governed by Law No. 213 of 2017 and the syndicate’s bylaws. This permit does not, under any circumstances, constitute authorization to practice medicine or to establish or operate any private facility unless all required legal licenses and approvals have been obtained from the competent authorities. Contact: <span id="view-email-en" style="font-weight: bold; color: var(--primary-dark);">---</span>
                     </small>
                 </div>
 
                 <div class="footer-assets">
-                    <div class="qr-area" style="display: flex; align-items: flex-end; gap: 15px;">
-                        <div class="qr-box">
-                            <img id="qr-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><rect x='10' y='10' width='30' height='30' fill='%23333'/><rect x='60' y='10' width='30' height='30' fill='%23333'/><rect x='10' y='60' width='30' height='30' fill='%23333'/><rect x='50' y='50' width='10' height='10' fill='%23333'/><rect x='70' y='70' width='20' height='20' fill='%23333'/></svg>" alt="QR">
-                            <p style="font-size: 6.5pt;">التوثيق الرقمي لاعتماد الشهادات<br>Digital Verification for Certificate Authentication</p>
-                        </div>
-                        <div class="qr-metadata" style="text-align: right; color: #555; font-size: 8.5pt; font-weight: 700; border-right: 2px solid #eee; padding-right: 10px; margin-bottom: 25px;">
+                    <div class="footer-management" style="display: flex; align-items: flex-end; gap: 20px;">
+                        <div class="qr-metadata" style="text-align: left; color: #555; font-size: 8.5pt; font-weight: 700; border-left: 2px solid #eee; padding-left: 10px; margin-bottom: 5px;">
                              <div id="view-footer-issue">تحريراً في: --/--/----</div>
                              <div id="view-footer-expiry" style="color: var(--primary-dark); margin-top: 3px;">صالح حتى: --/--/----</div>
+                        </div>
+                        <div class="qr-box">
+                            <img id="qr-preview" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='white'/><rect x='10' y='10' width='30' height='30' fill='%23333'/><rect x='60' y='10' width='30' height='30' fill='%23333'/><rect x='10' y='60' width='30' height='30' fill='%23333'/><rect x='50' y='50' width='10' height='10' fill='%23333'/><rect x='70' y='70' width='20' height='20' fill='%23333'/></svg>" alt="QR">
+                            <p>للتحقق الرقمي</p>
                         </div>
                     </div>
                     <div class="signature-box">
                         <small>يعتمد،،،</small>
                         <span class="sig-line"></span>
-                        <p>رئيس مجلس إدارة لجنة النقابة</p>
-                        <small>Chairman of the Syndicate Committee</small>
+                        <p>رئيس اللجنة النقابية</p>
                     </div>
                 </div>
 
@@ -736,8 +747,14 @@
 
             // التحديث الخاص للكود
             if (id === 'code-no') {
-                const target = document.getElementById('view-code-no');
-                if (target) target.innerText = val ? `كود العضو: ${toArabicDigits(val)} / Member Code: ${val}` : 'كود العضو / Member Code';
+                const targetAr = document.getElementById('view-code-no-ar');
+                const targetEn = document.getElementById('view-code-no-en');
+                if (targetAr) targetAr.innerText = val ? toArabicDigits(val) : '---';
+                if (targetEn) targetEn.innerText = val || '---';
+
+                // التحديث القديم للزون (اختياري، نحافظ عليه للتوافق)
+                const targetZone = document.getElementById('view-code-no');
+                if (targetZone) targetZone.innerText = val ? `كود العضو: ${toArabicDigits(val)} / Member Code: ${val}` : 'كود العضو / Member Code';
                 return;
             }
 
@@ -1097,6 +1114,9 @@
                 pNo: document.getElementById('p-no').value,
                 rNo: document.getElementById('r-no').value,
                 mNo: document.getElementById('m-no').value,
+                uni: document.getElementById('uni').value,
+                acadSpec: document.getElementById('acad-spec').value,
+                qualDate: document.getElementById('qual-date').value,
                 expiryDate: CURRENT_EXPIRY_DATE,
                 timestamp: new Date().toISOString()
             };
