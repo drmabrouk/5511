@@ -37,12 +37,28 @@
 
         .row-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-        .btn-print {
-            width: 100%; padding: 15px; background: var(--primary-dark); color: white; border: none;
-            border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 1.1rem; margin-top: auto; transition: 0.3s;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+        .action-controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
         }
-        .btn-print:hover { background: #4a0000; transform: translateY(-2px); }
+
+        .btn-action {
+            padding: 12px; border: none; border-radius: 8px; cursor: pointer;
+            font-weight: 700; font-size: 0.95rem; transition: 0.3s;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+        }
+
+        .btn-print-only { background: var(--primary-dark); color: white; }
+        .btn-print-only:hover { background: #5a0000; transform: translateY(-2px); }
+
+        .btn-save-as { background: var(--secondary-green); color: white; }
+        .btn-save-as:hover { background: #00332a; transform: translateY(-2px); }
+
+        .btn-action span { font-size: 0.75rem; font-weight: 400; opacity: 0.9; }
 
         /* --- منطقة المعاينة (Preview) --- */
         .preview-area {
@@ -57,10 +73,10 @@
             display: flex; flex-direction: column;
         }
 
-        /* --- الخلفية المائية بنمط الأمواج الانسيابية (Dual-Level Security Watermark) --- */
+        /* --- خلفية مائية انسيابية أمنية (Secure Wave-Flow Watermark) --- */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.003' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.003' /></linearGradient></defs><path d='M-100,150 C150,50 350,250 550,150 S850,50 1100,150' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,350 C100,450 500,250 700,350 S1000,450 1100,350' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,550 C250,450 550,650 1100,550' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,750 C150,850 450,650 750,750 S1000,850 1100,750' fill='none' stroke='url(%23g)' stroke-width='1'/><path d='M-100,950 C300,850 600,1050 1100,950' fill='none' stroke='url(%23g)' stroke-width='1'/><g fill='black' font-family='Arial' font-size='8' fill-opacity='0.003'><text x='100' y='100' transform='rotate(-15)'>Injuries and Rehabilitation Syndicate</text><text x='600' y='150' transform='rotate(10)'>Injuries and Rehabilitation Syndicate</text><text x='300' y='400' transform='rotate(-5)'>Injuries and Rehabilitation Syndicate</text><text x='700' y='600' transform='rotate(15)'>Injuries and Rehabilitation Syndicate</text><text x='200' y='800' transform='rotate(-10)'>Injuries and Rehabilitation Syndicate</text><text x='500' y='900' transform='rotate(5)'>Injuries and Rehabilitation Syndicate</text></g><g id='clusters' fill='black' font-family='Arial' font-size='6'><!-- Cluster 1: Member Name Zone --><text x='500' y='320' text-anchor='middle' transform='rotate(-2 500,320)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><text x='500' y='328' text-anchor='middle' transform='rotate(-2 500,328)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='500' y='336' text-anchor='middle' transform='rotate(-2 500,336)' fill-opacity='0.009'>Injuries and Rehabilitation Syndicate</text><!-- Cluster 2: Data Grid Zones --><text x='250' y='550' text-anchor='middle' transform='rotate(-20 250,550)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='250' y='558' text-anchor='middle' transform='rotate(-20 250,558)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><text x='750' y='550' text-anchor='middle' transform='rotate(20 750,550)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='750' y='558' text-anchor='middle' transform='rotate(20 750,558)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><!-- Cluster 3: Footer/Signature Zone --><text x='800' y='920' text-anchor='middle' transform='rotate(5 800,920)' fill-opacity='0.01'>Injuries and Rehabilitation Syndicate</text><text x='800' y='928' text-anchor='middle' transform='rotate(5 800,928)' fill-opacity='0.008'>Injuries and Rehabilitation Syndicate</text><text x='800' y='936' text-anchor='middle' transform='rotate(5 800,936)' fill-opacity='0.009'>Injuries and Rehabilitation Syndicate</text></g></svg>");
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1414' preserveAspectRatio='none'><defs><linearGradient id='g1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.04' /><stop offset='50%25' stop-color='%23004d40' stop-opacity='0.01' /><stop offset='100%25' stop-color='%237b0000' stop-opacity='0.04' /></linearGradient><linearGradient id='g2' x1='100%25' y1='0%25' x2='0%25' y2='100%25'><stop offset='0%25' stop-color='%23004d40' stop-opacity='0.04' /><stop offset='50%25' stop-color='%237b0000' stop-opacity='0.01' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.04' /></linearGradient></defs><g fill='none' stroke-width='1.2' stroke-linecap='round'><path d='M-100,50 C200,-100 400,200 700,50 S1000,-100 1100,50' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,200 C200,50 400,350 700,200 S1000,50 1100,200' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,350 C200,200 400,500 700,350 S1000,200 1100,350' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,500 C200,350 400,650 700,500 S1000,350 1100,500' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,650 C200,500 400,800 700,650 S1000,500 1100,650' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,800 C200,650 400,950 700,800 S1000,650 1100,800' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,950 C200,800 400,1100 700,950 S1000,800 1100,950' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,1100 C200,950 400,1250 700,1100 S1000,950 1100,1100' stroke='url(%23g2)' opacity='0.3'/><path d='M-100,1250 C200,1100 400,1400 700,1250 S1000,1100 1100,1250' stroke='url(%23g1)' opacity='0.5'/><path d='M-100,1380 C200,1230 400,1530 700,1380 S1000,1230 1100,1380' stroke='url(%23g2)' opacity='0.3'/></g></svg>");
             background-size: cover;
             pointer-events: none; z-index: 1;
         }
@@ -156,15 +172,22 @@
             margin-top: 5px;
         }
 
-        /* --- إعدادات الطباعة الاحترافية --- */
+        /* --- إعدادات الطباعة الاحترافية (Professional A4 Print Logic) --- */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
         @media print {
-            body { background: white; }
+            body { background: white; margin: 0; padding: 0; }
             .sidebar { display: none !important; }
-            .preview-area { padding: 0; background: white; overflow: visible; }
+            .preview-area { padding: 0; margin: 0; background: white; overflow: visible; display: block; }
             .a4-page {
                 box-shadow: none; border: none;
                 width: 210mm; height: 297mm;
-                margin: 0; page-break-after: always;
+                margin: 0 auto; page-break-after: always;
+                position: relative;
+                top: 0; left: 0;
             }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
@@ -258,10 +281,18 @@
             <strong>ملاحظة زمنية:</strong> صلاحية التصريح سنة واحدة من تاريخه.
         </div>
 
-        <button class="btn-print" onclick="window.print()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
-            طباعة / حفظ PDF
-        </button>
+        <div class="action-controls">
+            <button class="btn-action btn-print-only" onclick="window.print()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+                طباعة فقط
+                <span>Print Only</span>
+            </button>
+            <button class="btn-action btn-save-as" onclick="window.print()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                حفظ باسم
+                <span>Save As</span>
+            </button>
+        </div>
     </div>
 
     <div class="preview-area">
@@ -390,8 +421,8 @@
                     <div class="signature-box">
                         <small>يعتمد،،،</small>
                         <span class="sig-line"></span>
-                        <p>نقيب الإصابات والتأهيل</p>
-                        <small>Syndicate President</small>
+                        <p>رئيس لجنة النقابة للإصابات والتأهيل</p>
+                        <small>Chairman of the Syndicate Committee for Injuries and Rehabilitation</small>
                     </div>
                 </div>
 
