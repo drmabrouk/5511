@@ -481,7 +481,7 @@
                 </div>
 
                 <div class="data-grid">
-                    <!-- Professional Rank & Specialization (Full Width) -->
+                    <!-- Professional Rank & Specialization (Full Width) - Prioritized as requested -->
                     <div class="data-item" style="grid-column: span 2; background: rgba(123, 0, 0, 0.03); padding: 12px; border-radius: 4px; margin-bottom: 5px;">
                         <div class="label-pair">
                             <span class="label-ar">الدرجة المهنية والتخصص</span>
@@ -493,51 +493,7 @@
                         </div>
                     </div>
 
-                    <!-- Row 1: Permit Number <-> Member Code -->
-                    <div class="data-item">
-                        <div class="label-pair">
-                            <span class="label-ar">رقم التصريح</span>
-                            <span class="label-en">Permit Number</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-p-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-p-no-en">---</span>
-                        </div>
-                    </div>
-                    <div class="data-item">
-                        <div class="label-pair">
-                            <span class="label-ar">كود العضو</span>
-                            <span class="label-en">Member Code</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar" id="view-code-no-ar">---</span>
-                            <span class="value-en" id="view-code-no-en">---</span>
-                        </div>
-                    </div>
-
-                    <!-- Row 2: National ID Number <-> Syndicate Membership Number -->
-                    <div class="data-item">
-                        <div class="label-pair">
-                            <span class="label-ar">رقم الهوية الوطنية</span>
-                            <span class="label-en">National ID Number</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
-                        </div>
-                    </div>
-                    <div class="data-item">
-                        <div class="label-pair">
-                            <span class="label-ar">رقم العضوية النقابية</span>
-                            <span class="label-en">Membership Number</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-m-no-en">---</span>
-                        </div>
-                    </div>
-
-                    <!-- Row 3: Academic Qualification <-> University Name -->
+                    <!-- Row 1: Academic Qualification <-> University Name (Prioritized) -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">المؤهل الدراسي</span>
@@ -559,7 +515,7 @@
                         </div>
                     </div>
 
-                    <!-- Row 4: Academic Specialization <-> Qualification Date -->
+                    <!-- Row 2: Academic Specialization <-> Qualification Date (Prioritized) -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">تخصص المؤهل</span>
@@ -578,6 +534,50 @@
                         <div class="value-stack">
                             <span class="value-ar" id="view-qual-date-ar">---</span>
                             <span class="value-en" id="view-qual-date-en">---</span>
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Permit Number <-> Member Code -->
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">رقم التصريح</span>
+                            <span class="label-en">Permit Number</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-p-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-p-no-en">---</span>
+                        </div>
+                    </div>
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">كود العضو</span>
+                            <span class="label-en">Member Code</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-code-no-ar">---</span>
+                            <span class="value-en" id="view-code-no-en">---</span>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: National ID Number <-> Syndicate Membership Number -->
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">رقم الهوية الوطنية</span>
+                            <span class="label-en">National ID Number</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
+                        </div>
+                    </div>
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">رقم العضوية النقابية</span>
+                            <span class="label-en">Membership Number</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-m-no-en">---</span>
                         </div>
                     </div>
                 </div>
@@ -703,6 +703,7 @@
                 { ar: "خبير", en: "Expert" }
             ],
             specializations: [
+                { ar: "الإصابات والتأهيل", en: "Injuries and Rehabilitation" },
                 { ar: "الإصابات الرياضية والتأهيل", en: "Sports Injuries and Rehabilitation" },
                 { ar: "التغذية الرياضية", en: "Sports Nutrition" },
                 { ar: "العلاج بالتدليك الرياضي", en: "Sports Massage Therapy" },
@@ -852,8 +853,8 @@
                 enSpec = p[1];
             }
 
-            arSpan.innerText = arSpec ? `${arRank} (${arSpec})` : arRank;
-            enSpan.innerText = enSpec ? `${enRank} (${enSpec})` : enRank;
+            arSpan.innerText = arSpec ? `${arRank} – ${arSpec}` : arRank;
+            enSpan.innerText = enSpec ? `${enRank} – ${enSpec}` : enRank;
         }
 
         // دالة تحديث عرض الاسم مع معالجة لقب دكتور
@@ -1342,11 +1343,11 @@
             // تعيين القيم الافتراضية
             const defaults = {
                 branch: "القاهرة - Cairo",
-                uni: "جامعة العاصمة - Capital University",
+                uni: "جامعة القاهرة - Cairo University",
                 qual: "بكالوريوس في علوم الرياضة | Bachelor of Sports Sciences",
-                acadSpec: "علوم الصحة الرياضية - Sports Health Sciences",
+                acadSpec: "الإصابات والتأهيل - Injuries and Rehabilitation",
                 rank: "أخصائي - Specialist",
-                spec: "الإصابات الرياضية والتأهيل - Sports Injuries and Rehabilitation"
+                spec: "الإصابات والتأهيل - Injuries and Rehabilitation"
             };
 
             const today = new Date();
