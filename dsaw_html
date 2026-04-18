@@ -128,10 +128,10 @@
             display: flex; flex-direction: column;
         }
 
-        /* --- علامة مائية احترافية (V6.1 Subtle Wave-Only Watermark) --- */
+        /* --- علامة مائية احترافية (V6.3 Secure Geometric Watermark) --- */
         .security-watermark {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1414'><defs><linearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.015' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.015' /></linearGradient><filter id='softBlur'><feGaussianBlur in='SourceGraphic' stdDeviation='60'/></filter></defs><g filter='url(%23softBlur)' opacity='0.5'><path d='M-200,450 Q250,150 500,450 T1200,450' fill='none' stroke='url(%23waveGrad1)' stroke-width='400'/><path d='M-200,1050 Q300,750 600,1050 T1300,1050' fill='none' stroke='%23004d40' stroke-opacity='0.02' stroke-width='500'/><path d='M-200,750 Q400,1100 1200,750' fill='none' stroke='%237b0000' stroke-opacity='0.015' stroke-width='350'/></g></svg>");
+            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1414'><defs><pattern id='complexPattern' x='0' y='0' width='250' height='150' patternUnits='userSpaceOnUse' patternTransform='rotate(-20)'><circle cx='10' cy='10' r='1' fill='%237b0000' fill-opacity='0.02'/><circle cx='125' cy='75' r='1.5' fill='%23004d40' fill-opacity='0.02'/><text x='20' y='60' font-family='Arial, sans-serif' font-size='7' font-weight='bold' fill='%237b0000' fill-opacity='0.025'>Injuries and Rehabilitation Syndicate</text><text x='100' y='130' font-family='Arial, sans-serif' font-size='6' fill='%23004d40' fill-opacity='0.02'>SYNDICATE SECURE DOCUMENT</text></pattern><linearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.015' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.015' /></linearGradient><filter id='softBlur'><feGaussianBlur in='SourceGraphic' stdDeviation='60'/></filter></defs><rect width='100%25' height='100%25' fill='url(%23complexPattern)'/><g filter='url(%23softBlur)' opacity='0.4'><path d='M-200,450 Q250,150 500,450 T1200,450' fill='none' stroke='url(%23waveGrad1)' stroke-width='400'/><path d='M-200,1050 Q300,750 600,1050 T1300,1050' fill='none' stroke='%23004d40' stroke-opacity='0.02' stroke-width='500'/><path d='M-200,750 Q400,1100 1200,750' fill='none' stroke='%237b0000' stroke-opacity='0.015' stroke-width='350'/></g></svg>");
             background-size: 100% 100%;
             pointer-events: none; z-index: 1;
         }
@@ -304,7 +304,7 @@
             <fieldset>
                 <legend>البيانات الشخصية / Personal Info</legend>
                 <div class="input-group">
-                    <label>رقم الهوية الوطنية / National ID</label>
+                    <label>رقم بطاقة الهوية الوطنية / National ID card number</label>
                     <input type="text" id="nid-no" maxlength="14" placeholder="29001011234567" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateText('nid-no', this.value)">
                 </div>
                 <div class="input-group">
@@ -316,7 +316,7 @@
                     <input type="text" id="name-en" style="direction: ltr;" placeholder="Mohamed A. Mahmoud Ali" oninput="updateNameDisplay()">
                 </div>
                 <div class="input-group">
-                    <label>كود العضو / Member Code</label>
+                    <label>رقم القيد / Registration number</label>
                     <input type="text" id="code-no" placeholder="IRSEG-2024-XXXX" oninput="updateText('code-no', this.value)">
                 </div>
             </fieldset>
@@ -384,7 +384,7 @@
                     </div>
                 </div>
                 <div class="input-group">
-                    <label>رقم العضوية (Membership)</label>
+                    <label>رقم العضوية / Membership number</label>
                     <input type="text" id="m-no" placeholder="M-9980" oninput="updateText('m-no', this.value)">
                 </div>
             </fieldset>
@@ -493,11 +493,11 @@
                         </div>
                     </div>
 
-                    <!-- 2. National ID Number <-> Syndicate Membership Number -->
+                    <!-- 2. National ID card number <-> Membership number -->
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم الهوية الوطنية</span>
-                            <span class="label-en">National ID Number</span>
+                            <span class="label-ar">رقم بطاقة الهوية الوطنية</span>
+                            <span class="label-en">National ID card number</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
@@ -506,8 +506,8 @@
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم العضوية النقابية</span>
-                            <span class="label-en">Membership Number</span>
+                            <span class="label-ar">رقم العضوية</span>
+                            <span class="label-en">Membership number</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
@@ -515,7 +515,7 @@
                         </div>
                     </div>
 
-                    <!-- 3. Permit Number <-> Member Code -->
+                    <!-- 3. Permit Number <-> Registration number -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">رقم التصريح</span>
@@ -528,8 +528,8 @@
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">كود العضو</span>
-                            <span class="label-en">Member Code</span>
+                            <span class="label-ar">رقم القيد</span>
+                            <span class="label-en">Registration number</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar" id="view-code-no-ar">---</span>
@@ -559,7 +559,7 @@
                         </div>
                     </div>
 
-                    <!-- 5. Academic Specialization <-> Qualification Date -->
+                    <!-- 5. Academic Specialization <-> Date of obtaining the qualification -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">تخصص المؤهل</span>
@@ -572,8 +572,8 @@
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">تاريخ الحصول عليه</span>
-                            <span class="label-en">Qualification Date</span>
+                            <span class="label-ar">تاريخ الحصول على المؤهل</span>
+                            <span class="label-en">Date of obtaining the qualification</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar" id="view-qual-date-ar">---</span>
