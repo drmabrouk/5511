@@ -194,7 +194,7 @@
         }
 
         .data-item {
-            border-bottom: 1px solid #f5f5f5; padding: 8px 0;
+            border-bottom: 1px solid #eee; padding: 8px 0;
             display: flex; justify-content: space-between; align-items: baseline;
         }
 
@@ -481,7 +481,7 @@
                 </div>
 
                 <div class="data-grid">
-                    <!-- Professional Rank & Specialization (Full Width) - Prioritized as requested -->
+                    <!-- 1. Professional Rank & Specialization (Full Width) -->
                     <div class="data-item" style="grid-column: span 2; background: rgba(123, 0, 0, 0.03); padding: 12px; border-radius: 4px; margin-bottom: 5px;">
                         <div class="label-pair">
                             <span class="label-ar">الدرجة المهنية والتخصص</span>
@@ -493,51 +493,29 @@
                         </div>
                     </div>
 
-                    <!-- Row 1: Academic Qualification <-> University Name (Prioritized) -->
+                    <!-- 2. National ID Number <-> Syndicate Membership Number -->
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">المؤهل الدراسي</span>
-                            <span class="label-en">Academic Qualification</span>
+                            <span class="label-ar">رقم الهوية الوطنية</span>
+                            <span class="label-en">National ID Number</span>
                         </div>
                         <div class="value-stack">
-                            <span class="value-ar" id="view-qual-ar">---</span>
-                            <span class="value-en" id="view-qual-en">---</span>
+                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
                         </div>
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">اسم الجامعة</span>
-                            <span class="label-en">University Name</span>
+                            <span class="label-ar">رقم العضوية النقابية</span>
+                            <span class="label-en">Membership Number</span>
                         </div>
                         <div class="value-stack">
-                            <span class="value-ar" id="view-uni-ar">---</span>
-                            <span class="value-en" id="view-uni-en">---</span>
-                        </div>
-                    </div>
-
-                    <!-- Row 2: Academic Specialization <-> Qualification Date (Prioritized) -->
-                    <div class="data-item">
-                        <div class="label-pair">
-                            <span class="label-ar">تخصص المؤهل</span>
-                            <span class="label-en">Academic Specialization</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar" id="view-acad-spec-ar">---</span>
-                            <span class="value-en" id="view-acad-spec-en">---</span>
-                        </div>
-                    </div>
-                    <div class="data-item">
-                        <div class="label-pair">
-                            <span class="label-ar">تاريخ الحصول عليه</span>
-                            <span class="label-en">Qualification Date</span>
-                        </div>
-                        <div class="value-stack">
-                            <span class="value-ar" id="view-qual-date-ar">---</span>
-                            <span class="value-en" id="view-qual-date-en">---</span>
+                            <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
+                            <span class="value-en value-num-en" id="view-m-no-en">---</span>
                         </div>
                     </div>
 
-                    <!-- Row 3: Permit Number <-> Member Code -->
+                    <!-- 3. Permit Number <-> Member Code -->
                     <div class="data-item">
                         <div class="label-pair">
                             <span class="label-ar">رقم التصريح</span>
@@ -559,25 +537,47 @@
                         </div>
                     </div>
 
-                    <!-- Row 4: National ID Number <-> Syndicate Membership Number -->
+                    <!-- 4. Academic Qualification <-> University Name -->
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم الهوية الوطنية</span>
-                            <span class="label-en">National ID Number</span>
+                            <span class="label-ar">المؤهل الدراسي</span>
+                            <span class="label-en">Academic Qualification</span>
                         </div>
                         <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-nid-no-en">---</span>
+                            <span class="value-ar" id="view-qual-ar">---</span>
+                            <span class="value-en" id="view-qual-en">---</span>
                         </div>
                     </div>
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم العضوية النقابية</span>
-                            <span class="label-en">Membership Number</span>
+                            <span class="label-ar">اسم الجامعة</span>
+                            <span class="label-en">University Name</span>
                         </div>
                         <div class="value-stack">
-                            <span class="value-ar value-num-ar" id="view-m-no-ar">---</span>
-                            <span class="value-en value-num-en" id="view-m-no-en">---</span>
+                            <span class="value-ar" id="view-uni-ar">---</span>
+                            <span class="value-en" id="view-uni-en">---</span>
+                        </div>
+                    </div>
+
+                    <!-- 5. Academic Specialization <-> Qualification Date -->
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">تخصص المؤهل</span>
+                            <span class="label-en">Academic Specialization</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-acad-spec-ar">---</span>
+                            <span class="value-en" id="view-acad-spec-en">---</span>
+                        </div>
+                    </div>
+                    <div class="data-item">
+                        <div class="label-pair">
+                            <span class="label-ar">تاريخ الحصول عليه</span>
+                            <span class="label-en">Qualification Date</span>
+                        </div>
+                        <div class="value-stack">
+                            <span class="value-ar" id="view-qual-date-ar">---</span>
+                            <span class="value-en" id="view-qual-date-en">---</span>
                         </div>
                     </div>
                 </div>
