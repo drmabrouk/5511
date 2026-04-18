@@ -17,6 +17,10 @@
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         body { font-family: 'Tajawal', sans-serif; margin: 0; background: var(--bg-control); display: flex; height: 100vh; overflow: hidden; color: var(--text-dark); }
 
+        @media (max-width: 900px) {
+            body { flex-direction: column; overflow-y: auto; height: auto; }
+        }
+
         /* حالة إغلاق النظام */
         .system-locked .sidebar-content,
         .system-locked .preview-area,
@@ -47,6 +51,11 @@
             width: 380px; min-width: 380px; background: #fff; padding: 20px;
             box-shadow: 4px 0 15px rgba(0,0,0,0.05); overflow-y: auto; z-index: 10;
             display: flex; flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 900px) {
+            .sidebar { width: 100%; min-width: 100%; height: auto; max-height: 600px; }
         }
 
         .sidebar-header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
@@ -89,18 +98,28 @@
 
         .row-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
+        @media (max-width: 1100px) {
+            .sidebar { width: 320px; min-width: 320px; padding: 15px; }
+            .sidebar-header h2 { font-size: 1.1rem; }
+            .btn-action { font-size: 0.85rem; }
+        }
+
         .action-controls {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
             margin-top: auto;
-            padding-top: 15px;
+            padding: 15px 0;
             border-top: 1px solid #eee;
+            background: #fff;
+            position: sticky;
+            bottom: -20px; /* Offset for sidebar padding */
+            z-index: 100;
         }
 
         .btn-action {
             padding: 12px; border: none; border-radius: 8px; cursor: pointer;
-            font-weight: 700; font-size: 0.95rem; transition: 0.3s;
+            font-weight: 700; font-size: 0.95rem; transition: all 0.3s ease;
             display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
         }
 
@@ -126,7 +145,12 @@
             width: 210mm; height: 297mm; background: white; position: relative;
             box-shadow: 0 0 35px rgba(0,0,0,0.25); overflow: hidden;
             display: flex; flex-direction: column;
+            transform-origin: top center;
         }
+
+        @media (max-width: 1400px) { .a4-page { transform: scale(0.85); margin-bottom: -150px; } }
+        @media (max-width: 1200px) { .a4-page { transform: scale(0.7); margin-bottom: -300px; } }
+        @media (max-width: 900px) { .a4-page { transform: scale(0.55); margin-bottom: -450px; } }
 
         /* --- علامة مائية احترافية (V6.1 Subtle Wave-Only Watermark) --- */
         .security-watermark {
@@ -368,6 +392,10 @@
             <fieldset>
                 <legend>بيانات التصريح والانتساب</legend>
                 <div class="input-group">
+                    <label>تاريخ الإصدار / Issue Date</label>
+                    <input type="date" id="issue-date" onchange="updateDates()">
+                </div>
+                <div class="input-group">
                     <label>فرع النقابة / Branch</label>
                     <select id="branch" onchange="updateBranch(this.value)">
                         <option value="">جاري التحميل...</option>
@@ -443,6 +471,11 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
                 حفظ تلقائي
                 <span>Auto Save</span>
+            </button>
+            <button id="btn-reset" class="btn-action" onclick="resetForm()" style="grid-column: span 2; background: #9e9e9e; color: white;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                تفريغ / مسح البيانات
+                <span>Reset / Clear</span>
             </button>
         </div>
     </div>
@@ -895,6 +928,81 @@
             updateNameDisplay(); // تحديث الاسم لاحتمالية تغير اللقب
         }
 
+        // دالة تحديث تواريخ الإصدار والانتهاء
+        function updateDates() {
+            const issueInput = document.getElementById('issue-date').value;
+            let issueDate = issueInput ? new Date(issueInput) : new Date();
+
+            const formatDate = (date) => {
+                let d = date.getDate().toString().padStart(2, '0');
+                let m = (date.getMonth() + 1).toString().padStart(2, '0');
+                let y = date.getFullYear();
+                return `${d}/${m}/${y}`;
+            };
+
+            const expiryDate = new Date(issueDate);
+            expiryDate.setFullYear(issueDate.getFullYear() + 1);
+
+            const issueFormatted = formatDate(issueDate);
+            const expiryFormatted = formatDate(expiryDate);
+
+            CURRENT_EXPIRY_DATE = expiryFormatted;
+
+            document.getElementById('view-footer-issue').innerText = `تحريراً في: ${toArabicDigits(issueFormatted)} / Issued on: ${issueFormatted}`;
+            document.getElementById('view-footer-expiry').innerText = `صالح حتى: ${toArabicDigits(expiryFormatted)} / Valid until: ${expiryFormatted}`;
+        }
+
+        // دالة مزامنة كافة البيانات مع المعاينة
+        function syncAllToPreview() {
+            updateNameDisplay();
+            updateRankAndSpec();
+            updateQualInfo();
+            updateBranch(document.getElementById('branch').value);
+            updateDates();
+
+            const fields = ['nid-no', 'code-no', 'uni', 'acad-spec', 'qual-date', 'p-no', 'r-no', 'm-no'];
+            fields.forEach(f => {
+                const el = document.getElementById(f);
+                if (el) {
+                    if (f === 'uni') handleUniChange(el.value);
+                    else if (f === 'acad-spec') handleAcadSpecChange(el.value);
+                    else updateText(f, el.value);
+                }
+            });
+        }
+
+        // دالة تصفير النموذج والعودة للقيم الافتراضية
+        function resetForm() {
+            if (!confirm('هل أنت متأكد من مسح كافة البيانات؟ / Are you sure you want to clear all data?')) return;
+
+            document.getElementById('cert-form').reset();
+
+            // تعيين القيم الافتراضية مرة أخرى
+            const defaults = {
+                branch: "القاهرة - Cairo",
+                uni: "جامعة القاهرة - Cairo University",
+                qual: "بكالوريوس في علوم الرياضة | Bachelor of Sports Sciences",
+                acadSpec: "الإصابات والتأهيل - Injuries and Rehabilitation",
+                rank: "أخصائي - Specialist",
+                spec: "الإصابات والتأهيل - Injuries and Rehabilitation"
+            };
+
+            document.getElementById('branch').value = defaults.branch;
+            document.getElementById('uni').value = defaults.uni;
+            document.getElementById('qual').value = defaults.qual;
+            document.getElementById('acad-spec').value = defaults.acadSpec;
+            document.getElementById('rank').value = defaults.rank;
+            document.getElementById('spec').value = defaults.spec;
+
+            const today = new Date();
+            const lastYear = new Date();
+            lastYear.setFullYear(today.getFullYear() - 1);
+            const qualDateStr = lastYear.toLocaleString('ar-EG', { month: 'long' }) + " " + lastYear.getFullYear();
+            document.getElementById('qual-date').value = qualDateStr;
+
+            syncAllToPreview();
+        }
+
         // تحديث فرع النقابة والبريد الإلكتروني
         function updateBranch(val) {
             const arSpan = document.getElementById("view-branch-ar");
@@ -906,6 +1014,12 @@
             const discEmailEn = document.getElementById("disclaimer-email-en");
 
             let branchEn = "";
+            if (!val) {
+                if (arSpan) arSpan.innerText = "";
+                if (enSpan) enSpan.innerText = "";
+                return;
+            }
+
             if (val.includes(" - ")) {
                 const parts = val.split(" - ");
                 arSpan.innerText = parts[0];
@@ -921,8 +1035,8 @@
             if (branchEn === "Cairo") email = "info@irseg.org";
             else if (branchEn === "Monufia") email = "menofia@irseg.org";
 
-            emailAr.innerText = email;
-            emailEn.innerText = email;
+            if (emailAr) emailAr.innerText = email;
+            if (emailEn) emailEn.innerText = email;
 
             if (discEmailAr) discEmailAr.innerText = email;
             if (discEmailEn) discEmailEn.innerText = email;
@@ -1204,21 +1318,26 @@
                 return;
             }
 
+            // ضمان مزامنة كافة البيانات قبل الحفظ
+            syncAllToPreview();
+
+            const getVal = (id) => document.getElementById(id).value;
             const formData = {
-                nid: document.getElementById('nid-no').value,
-                nameAr: document.getElementById('name-ar').value,
-                nameEn: document.getElementById('name-en').value,
-                codeNo: document.getElementById('code-no').value,
-                qual: document.getElementById('qual').value,
-                rank: document.getElementById('rank').value,
-                spec: document.getElementById('spec').value,
-                branch: document.getElementById('branch').value,
-                pNo: document.getElementById('p-no').value,
-                rNo: document.getElementById('r-no').value,
-                mNo: document.getElementById('m-no').value,
-                uni: document.getElementById('uni').value,
-                acadSpec: document.getElementById('acad-spec').value,
-                qualDate: document.getElementById('qual-date').value,
+                nid: getVal('nid-no'),
+                nameAr: getVal('name-ar'),
+                nameEn: getVal('name-en'),
+                codeNo: getVal('code-no'),
+                qual: getVal('qual'),
+                rank: getVal('rank'),
+                spec: getVal('spec'),
+                branch: getVal('branch'),
+                pNo: getVal('p-no'),
+                rNo: getVal('r-no'),
+                mNo: getVal('m-no'),
+                uni: getVal('uni'),
+                acadSpec: getVal('acad-spec'),
+                qualDate: getVal('qual-date'),
+                issueDate: getVal('issue-date'),
                 expiryDate: CURRENT_EXPIRY_DATE,
                 timestamp: new Date().toISOString()
             };
@@ -1311,21 +1430,21 @@
             document.getElementById('r-no').value = record.rNo || '';
             document.getElementById('m-no').value = record.mNo || '';
 
-            // تحديث المعاينة
-            updateText('nid-no', record.nid);
-            updateNameDisplay();
-            updateText('code-no', record.codeNo);
-            updateText('uni', record.uni);
-            updateQualInfo();
-            updateText('acad-spec', record.acadSpec);
-            updateText('qual-date', record.qualDate);
-            updateRankAndSpec();
-            updateBranch(record.branch);
-            updateText('p-no', record.pNo);
-            updateText('r-no', record.rNo);
-            updateText('m-no', record.mNo);
+            // استعادة تاريخ الإصدار إذا وجد
+            if (record.issueDate) {
+                document.getElementById('issue-date').value = record.issueDate;
+            } else if (record.timestamp) {
+                const issueDateObj = new Date(record.timestamp);
+                const y = issueDateObj.getFullYear();
+                const m = (issueDateObj.getMonth() + 1).toString().padStart(2, '0');
+                const d = issueDateObj.getDate().toString().padStart(2, '0');
+                document.getElementById('issue-date').value = `${y}-${m}-${d}`;
+            }
 
-            // استعادة تاريخ انتهاء التصريح من السجل
+            // تحديث المعاينة بالكامل
+            syncAllToPreview();
+
+            // استعادة تاريخ انتهاء التصريح من السجل (في حال كان مختلفاً عن الحساب التلقائي)
             if (record.expiryDate) {
                 CURRENT_EXPIRY_DATE = record.expiryDate;
                 document.getElementById('view-footer-expiry').innerText = `صالح حتى: ${toArabicDigits(record.expiryDate)} / Valid until: ${record.expiryDate}`;
@@ -1353,40 +1472,25 @@
             const today = new Date();
             const lastYear = new Date();
             lastYear.setFullYear(today.getFullYear() - 1);
-            const qualDate = lastYear.toLocaleString('ar-EG', { month: 'long' }) + " " + lastYear.getFullYear();
+            const qualDateStr = lastYear.toLocaleString('ar-EG', { month: 'long' }) + " " + lastYear.getFullYear();
 
             // تعبئة النموذج بالقيم الافتراضية
             document.getElementById('branch').value = defaults.branch;
             document.getElementById('uni').value = defaults.uni;
             document.getElementById('qual').value = defaults.qual;
             document.getElementById('acad-spec').value = defaults.acadSpec;
-            document.getElementById('qual-date').value = qualDate;
+            document.getElementById('qual-date').value = qualDateStr;
             document.getElementById('rank').value = defaults.rank;
             document.getElementById('spec').value = defaults.spec;
 
+            // تعيين تاريخ الإصدار الافتراضي (اليوم)
+            const y = today.getFullYear();
+            const m = (today.getMonth() + 1).toString().padStart(2, '0');
+            const d = today.getDate().toString().padStart(2, '0');
+            document.getElementById('issue-date').value = `${y}-${m}-${d}`;
+
             // تحديث المعاينة فوراً
-            updateBranch(defaults.branch);
-            updateText('uni', defaults.uni);
-            updateQualInfo();
-            updateText('acad-spec', defaults.acadSpec);
-            updateText('qual-date', qualDate);
-            updateRankAndSpec();
-
-            const expiry = new Date();
-            expiry.setFullYear(today.getFullYear() + 1);
-
-            const formatDate = (date) => {
-                let d = date.getDate().toString().padStart(2, '0');
-                let m = (date.getMonth() + 1).toString().padStart(2, '0');
-                let y = date.getFullYear();
-                return `${d}/${m}/${y}`;
-            };
-
-            const expiryFormatted = formatDate(expiry);
-            const todayFormatted = formatDate(today);
-            CURRENT_EXPIRY_DATE = expiryFormatted;
-            document.getElementById('view-footer-expiry').innerText = `صالح حتى: ${toArabicDigits(expiryFormatted)} / Valid until: ${expiryFormatted}`;
-            document.getElementById('view-footer-issue').innerText = `تحريراً في: ${toArabicDigits(todayFormatted)} / Issued on: ${todayFormatted}`;
+            syncAllToPreview();
         };
     </script>
 </body>
