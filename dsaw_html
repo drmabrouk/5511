@@ -336,7 +336,7 @@
 
         @media print {
             body { background: white; margin: 0; padding: 0; overflow: visible; }
-            .sidebar, #lock-overlay { display: none !important; }
+            .sidebar, #lock-overlay, .toast { display: none !important; }
             .preview-area { padding: 0; margin: 0; background: white; overflow: visible; display: block; height: auto; }
             .a4-page {
                 box-shadow: none; border: none;
