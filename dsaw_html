@@ -106,22 +106,22 @@
 
         .action-controls {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3px;
             margin-top: auto;
-            padding: 10px 0;
+            padding: 6px 0;
             border-top: 1px solid #eee;
             background: #fff;
             position: sticky;
-            bottom: -20px; /* Offset for sidebar padding */
+            bottom: -20px;
             z-index: 100;
         }
 
         .btn-action {
-            padding: 8px 10px; border: none; border-radius: 6px; cursor: pointer;
-            font-weight: 700; font-size: 0.85rem; transition: all 0.3s ease;
+            padding: 5px 2px; border: none; border-radius: 4px; cursor: pointer;
+            font-weight: 700; font-size: 0.72rem; transition: all 0.2s ease;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            gap: 2px; line-height: 1.1;
+            gap: 1px; line-height: 1.1;
         }
 
         .btn-print-only { background: var(--primary-dark); color: white; }
@@ -153,12 +153,30 @@
         @media (max-width: 1200px) { .a4-page { transform: scale(0.7); margin-bottom: -300px; } }
         @media (max-width: 900px) { .a4-page { transform: scale(0.55); margin-bottom: -450px; } }
 
-        /* --- علامة مائية احترافية (V6.1 Subtle Wave-Only Watermark) --- */
-        .security-watermark {
+        /* --- علامة مائية احترافية متقدمة (Advanced Multi-Layer Watermark) --- */
+        .watermark-container {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;charset=UTF-8,<svg xmlns='http://www.w3.org/2000/svg' width='1000' height='1414'><defs><linearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%237b0000' stop-opacity='0.015' /><stop offset='100%25' stop-color='%23004d40' stop-opacity='0.015' /></linearGradient><filter id='softBlur'><feGaussianBlur in='SourceGraphic' stdDeviation='60'/></filter></defs><g filter='url(%23softBlur)' opacity='0.5'><path d='M-200,450 Q250,150 500,450 T1200,450' fill='none' stroke='url(%23waveGrad1)' stroke-width='400'/><path d='M-200,1050 Q300,750 600,1050 T1300,1050' fill='none' stroke='%23004d40' stroke-opacity='0.02' stroke-width='500'/><path d='M-200,750 Q400,1100 1200,750' fill='none' stroke='%237b0000' stroke-opacity='0.015' stroke-width='350'/></g></svg>");
+            pointer-events: none; z-index: 1; overflow: hidden;
+        }
+
+        /* الطبقة 1: الأمواج الناعمة الأصلية */
+        .watermark-waves {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1414'%3E%3Cdefs%3E%3ClinearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237b0000' stop-opacity='0.015' /%3E%3Cstop offset='100%25' stop-color='%23004d40' stop-opacity='0.015' /%3E%3C/linearGradient%3E%3Cfilter id='softBlur'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='60'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23softBlur)' opacity='0.5'%3E%3Cpath d='M-200,450 Q250,150 500,450 T1200,450' fill='none' stroke='url(%23waveGrad1)' stroke-width='400'/%3E%3Cpath d='M-200,1050 Q300,750 600,1050 T1300,1050' fill='none' stroke='%23004d40' stroke-opacity='0.02' stroke-width='500'/%3E%3Cpath d='M-200,750 Q400,1100 1200,750' fill='none' stroke='%237b0000' stroke-opacity='0.015' stroke-width='350'/%3E%3C/g%3E%3C/svg%3E");
             background-size: 100% 100%;
-            pointer-events: none; z-index: 1;
+        }
+
+        /* الطبقة 2: النص المتكرر (Syndicate Name Wave Pattern) */
+        .watermark-text-pattern {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='150' opacity='0.02'%3E%3Ctext x='50%25' y='50%25' font-family='Tajawal, sans-serif' font-size='9' font-weight='800' fill='%237b0000' text-anchor='middle' transform='rotate(-25 200 75)'%3EINJURIES AND REHABILITATION SYNDICATE%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        /* الطبقة 3: الخطوط الهندسية الدقيقة */
+        .watermark-geometric-lines {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%23004d40' stroke-width='0.5' stroke-opacity='0.01'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E");
         }
 
         .custom-watermark-layer {
@@ -247,28 +265,35 @@
             align-items: flex-end; padding-top: 10px; border-top: 1px solid #eee;
         }
 
-        .qr-box { text-align: center; }
+        .qr-box { text-align: center; transform: translateX(10px); }
         #qr-preview { width: 75px; height: 75px; border: 1px solid #eaeaea; padding: 2px; background: #fff; }
         .qr-box p { font-size: 7pt; margin: 3px 0 0; color: #444; font-weight: 700; line-height: 1.1; }
 
         .signature-box { text-align: center; min-width: 200px; color: var(--text-dark); position: relative; }
-        .signature-box .sig-line { border-top: 1.5px solid #333; margin-top: 45px; width: 100%; display: block; }
+        .signature-box .sig-line { border-top: 1.5px solid #333; margin-top: 55px; width: 100%; display: block; }
         .signature-box p { margin: 8px 0 0; font-weight: 700; font-size: 10.5pt; }
         .signature-box small { font-size: 8.5pt; color: #555; }
         .electronic-signature {
             position: absolute;
-            top: 5px;
+            bottom: 45px;
             left: 50%;
             transform: translateX(-50%);
+            max-width: 150px;
+            max-height: 80px;
+            display: none;
+            user-select: none;
+            pointer-events: none;
+            z-index: 5;
+        }
+        .electronic-signature img { width: 100%; height: auto; filter: contrast(1.2) brightness(1.1) multiply(0.9); }
+        .electronic-signature.text-sig {
+            bottom: 40px;
             font-family: 'Amiri', serif;
             font-size: 22pt;
             color: #000080;
             opacity: 0.8;
             font-weight: 700;
             white-space: nowrap;
-            display: none;
-            user-select: none;
-            pointer-events: none;
         }
 
         .verification-footer {
@@ -287,15 +312,16 @@
         }
 
         @media print {
-            body { background: white; margin: 0; padding: 0; }
-            .sidebar { display: none !important; }
-            .preview-area { padding: 0; margin: 0; background: white; overflow: visible; display: block; }
+            body { background: white; margin: 0; padding: 0; overflow: visible; }
+            .sidebar, #lock-overlay { display: none !important; }
+            .preview-area { padding: 0; margin: 0; background: white; overflow: visible; display: block; height: auto; }
             .a4-page {
                 box-shadow: none; border: none;
                 width: 210mm; height: 297mm;
-                margin: 0 auto; page-break-after: always;
+                margin: 0 !important; page-break-after: always;
                 position: relative;
                 top: 0; left: 0;
+                transform: none !important;
             }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
@@ -344,7 +370,7 @@
             <fieldset>
                 <legend>البيانات الشخصية / Personal Info</legend>
                 <div class="input-group">
-                    <label>رقم الهوية الوطنية / National ID</label>
+                    <label>الرقم القومي / National ID number</label>
                     <input type="text" id="nid-no" maxlength="14" placeholder="29001011234567" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateText('nid-no', this.value)">
                 </div>
                 <div class="input-group">
@@ -452,8 +478,12 @@
                     <input type="file" id="watermark-input" accept="image/*" onchange="handleWatermarkUpload(event)">
                 </div>
                 <div class="input-group">
-                    <label>شفافية العلامة المائية (Opacity)</label>
-                    <input type="range" id="watermark-opacity" min="0" max="1" step="0.01" value="0.1" oninput="updateWatermarkOpacity(this.value)">
+                    <label>شفافية العلامة المرفوعة (Custom Opacity)</label>
+                    <input type="range" id="watermark-opacity-custom" min="0" max="1" step="0.01" value="0.1" oninput="updateWatermarkOpacityCustom(this.value)">
+                </div>
+                <div class="input-group">
+                    <label>شدة العلامة النظامية (System Intensity)</label>
+                    <input type="range" id="watermark-opacity-system" min="0" max="1" step="0.01" value="0.1" oninput="updateWatermarkOpacitySystem(this.value)">
                 </div>
             </fieldset>
 
@@ -467,6 +497,10 @@
                     <div style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
                         <input type="checkbox" id="check-signature" style="width: 20px; height: 20px; cursor: pointer;" onchange="toggleElectronicSignature(this.checked)">
                         <label for="check-signature" style="margin: 0; cursor: pointer; font-weight: 700;">تفعيل التوقيع الإلكتروني / Electronic Signature</label>
+                    </div>
+                    <div id="signature-upload-box" style="margin-top: 10px; display: none;">
+                        <label style="display: block; font-size: 0.8rem; color: #666; margin-bottom: 5px;">رفع صورة التوقيع / Upload Signature</label>
+                        <input type="file" id="signature-input" accept="image/*" onchange="handleSignatureUpload(event)" style="font-size: 0.8rem;">
                     </div>
                 </div>
             </fieldset>
@@ -484,28 +518,37 @@
         </button>
 
         <div class="action-controls">
+            <button class="btn-action" onclick="deleteCurrentRecord()" style="background: #e53935; color: white;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18m-2 0v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path></svg>
+                حذف
+                <span>Delete</span>
+            </button>
             <button class="btn-action btn-print-only" onclick="handlePrint()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
-                طباعة وحفظ
-                <span>Print & Save</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+                طباعة
+                <span>Print</span>
             </button>
             <button class="btn-action btn-save-as" onclick="saveDocumentLocally()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
-                حفظ تلقائي
-                <span>Auto Save</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                حفظ
+                <span>Save</span>
             </button>
-            <button id="btn-reset" class="btn-action" onclick="resetForm()" style="grid-column: span 2; background: #9e9e9e; color: white;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-                تفريغ / مسح البيانات
-                <span>Reset / Clear</span>
+            <button class="btn-action" onclick="saveAsDraft()" style="background: #fb8c00; color: white;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                مسودة
+                <span>Draft</span>
             </button>
         </div>
     </div>
 
     <div class="preview-area">
         <div class="a4-page" id="printable">
-            <div class="security-watermark"></div>
             <img id="view-custom-watermark" class="custom-watermark-layer" src="" alt="Watermark">
+            <div id="watermark-system" class="watermark-container">
+                <div class="watermark-waves"></div>
+                <div class="watermark-text-pattern"></div>
+                <div class="watermark-geometric-lines"></div>
+            </div>
 
             <div class="doc-content">
 
@@ -551,8 +594,8 @@
                     <!-- 2. National ID Number <-> Syndicate Membership Number -->
                     <div class="data-item">
                         <div class="label-pair">
-                            <span class="label-ar">رقم الهوية الوطنية</span>
-                            <span class="label-en">National ID Number</span>
+                            <span class="label-ar">الرقم القومي</span>
+                            <span class="label-en">National ID number</span>
                         </div>
                         <div class="value-stack">
                             <span class="value-ar value-num-ar" id="view-nid-no-ar">---</span>
@@ -665,7 +708,8 @@
                     <!-- Signature aligned left -->
                     <div class="signature-box" style="text-align: center;">
                         <small>يعتمد،،،</small>
-                        <div id="view-signature" class="electronic-signature">محمد أحمد</div>
+                        <div id="view-signature" class="electronic-signature text-sig">محمد أحمد</div>
+                        <img id="view-signature-img" class="electronic-signature" src="" alt="Signature">
                         <span class="sig-line"></span>
                         <p>رئيس اللجنة النقابية</p>
                     </div>
@@ -1074,10 +1118,45 @@
         }
 
         async function toggleElectronicSignature(isChecked) {
-            const sig = document.getElementById('view-signature');
-            if (sig) sig.style.display = isChecked ? 'block' : 'none';
+            const sigText = document.getElementById('view-signature');
+            const sigImg = document.getElementById('view-signature-img');
+            const uploadBox = document.getElementById('signature-upload-box');
+
+            if (uploadBox) uploadBox.style.display = isChecked ? 'block' : 'none';
+
+            if (isChecked) {
+                if (APP_CONFIG.signatureImage) {
+                    if (sigImg) sigImg.style.display = 'block';
+                    if (sigText) sigText.style.display = 'none';
+                } else {
+                    if (sigText) sigText.style.display = 'block';
+                    if (sigImg) sigImg.style.display = 'none';
+                }
+            } else {
+                if (sigText) sigText.style.display = 'none';
+                if (sigImg) sigImg.style.display = 'none';
+            }
+
             APP_CONFIG.electronicSignature = isChecked;
             await saveConfig();
+        }
+
+        async function handleSignatureUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async function() {
+                APP_CONFIG.signatureImage = reader.result;
+                const sigImg = document.getElementById('view-signature-img');
+                const sigText = document.getElementById('view-signature');
+                if (sigImg) {
+                    sigImg.src = reader.result;
+                    sigImg.style.display = 'block';
+                }
+                if (sigText) sigText.style.display = 'none';
+                await saveConfig();
+            };
+            reader.readAsDataURL(file);
         }
 
         // معالجة وتحميل الصور (الشعار و QR)
@@ -1116,11 +1195,17 @@
             reader.readAsDataURL(file);
         }
 
-        async function updateWatermarkOpacity(val) {
-            const output = document.getElementById('view-custom-watermark');
-            output.style.opacity = val;
+        async function updateWatermarkOpacityCustom(val) {
+            const custom = document.getElementById('view-custom-watermark');
+            if (custom) custom.style.opacity = val;
+            APP_CONFIG.watermarkOpacityCustom = val;
+            await saveConfig();
+        }
 
-            APP_CONFIG.watermarkOpacity = val;
+        async function updateWatermarkOpacitySystem(val) {
+            const system = document.getElementById('watermark-system');
+            if (system) system.style.opacity = val;
+            APP_CONFIG.watermarkOpacitySystem = val;
             await saveConfig();
         }
 
@@ -1128,7 +1213,15 @@
         let storageDirHandle = null;
         let DATABASE = [];
         let currentDbName = "syndicate_database.json";
-        let APP_CONFIG = { logo: null, watermark: null, watermarkOpacity: 0.1, electronicIssuance: false, electronicSignature: false };
+        let APP_CONFIG = {
+            logo: null,
+            watermark: null,
+            watermarkOpacityCustom: 0.1,
+            watermarkOpacitySystem: 0.1,
+            electronicIssuance: false,
+            electronicSignature: false,
+            signatureImage: null
+        };
         let CURRENT_EXPIRY_DATE = ""; // لتخزين تاريخ انتهاء التصريح الحالي
 
         // استخدام IndexedDB لحفظ مقبض المجلد (Directory Handle) بشكل دائم
@@ -1217,13 +1310,24 @@
                         document.getElementById('logo-preview').src = APP_CONFIG.logo;
                     }
 
+                    if (APP_CONFIG.watermarkOpacityCustom !== undefined) {
+                        const val = APP_CONFIG.watermarkOpacityCustom;
+                        document.getElementById('watermark-opacity-custom').value = val;
+                        const custom = document.getElementById('view-custom-watermark');
+                        if (custom) custom.style.opacity = val;
+                    }
+
+                    if (APP_CONFIG.watermarkOpacitySystem !== undefined) {
+                        const val = APP_CONFIG.watermarkOpacitySystem;
+                        document.getElementById('watermark-opacity-system').value = val;
+                        const system = document.getElementById('watermark-system');
+                        if (system) system.style.opacity = val;
+                    }
+
                     if (APP_CONFIG.watermark) {
                         const output = document.getElementById('view-custom-watermark');
                         output.src = APP_CONFIG.watermark;
                         output.style.display = 'block';
-                        output.style.opacity = APP_CONFIG.watermarkOpacity;
-
-                        document.getElementById('watermark-opacity').value = APP_CONFIG.watermarkOpacity;
                     }
 
                     if (APP_CONFIG.electronicIssuance !== undefined) {
@@ -1234,8 +1338,22 @@
                     if (APP_CONFIG.electronicSignature !== undefined) {
                         const checkSig = document.getElementById('check-signature');
                         if (checkSig) checkSig.checked = APP_CONFIG.electronicSignature;
-                        const sigView = document.getElementById('view-signature');
-                        if (sigView) sigView.style.display = APP_CONFIG.electronicSignature ? 'block' : 'none';
+
+                        const uploadBox = document.getElementById('signature-upload-box');
+                        if (uploadBox) uploadBox.style.display = APP_CONFIG.electronicSignature ? 'block' : 'none';
+
+                        const sigText = document.getElementById('view-signature');
+                        const sigImg = document.getElementById('view-signature-img');
+
+                        if (APP_CONFIG.electronicSignature) {
+                            if (APP_CONFIG.signatureImage) {
+                                if (sigImg) { sigImg.src = APP_CONFIG.signatureImage; sigImg.style.display = 'block'; }
+                                if (sigText) sigText.style.display = 'none';
+                            } else {
+                                if (sigText) sigText.style.display = 'block';
+                                if (sigImg) sigImg.style.display = 'none';
+                            }
+                        }
                     }
                 }
             } catch (err) { console.log("Config not found or invalid."); }
@@ -1345,6 +1463,29 @@
                 await writable.close();
             } catch (err) {
                 console.error("Failed to save database index:", err);
+            }
+        }
+
+        function saveAsDraft() {
+            alert("تم حفظ المسودة بنجاح (محاكاة)\nDraft saved successfully (Simulated)");
+        }
+
+        async function deleteCurrentRecord() {
+            const nid = document.getElementById('nid-no').value;
+            if (!nid || nid.length !== 14) {
+                alert('يرجى إدخال الرقم القومي الصحيح للحذف (14 رقم).\nPlease enter valid 14-digit National ID.');
+                return;
+            }
+            if (!confirm(`هل أنت متأكد من حذف السجل [${nid}]؟\nAre you sure you want to delete this record?`)) return;
+
+            const idx = DATABASE.findIndex(r => r.nid === nid);
+            if (idx !== -1) {
+                DATABASE.splice(idx, 1);
+                await saveToDatabase(DATABASE);
+                alert('تم الحذف بنجاح.\nDeleted successfully.');
+                resetForm();
+            } else {
+                alert('السجل غير موجود.\nRecord not found.');
             }
         }
 
