@@ -92,9 +92,11 @@
         .input-group { margin-bottom: 12px; }
         .input-group label { display: block; margin-bottom: 4px; font-weight: 500; font-size: 0.85rem; color: #444; }
         .input-group input, .input-group select {
-            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Tajawal'; font-size: 0.9rem; transition: 0.2s;
+            width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-family: 'Tajawal'; font-size: 0.9rem; transition: all 0.3s ease;
+            background: #fff;
         }
-        .input-group input:focus, .input-group select:focus { border-color: var(--secondary-green); outline: none; box-shadow: 0 0 0 3px rgba(0,77,64,0.1); }
+        .input-group input:hover, .input-group select:hover { border-color: #bbb; background: #fafafa; }
+        .input-group input:focus, .input-group select:focus { border-color: var(--secondary-green); outline: none; background: #fff; box-shadow: 0 0 0 3px rgba(0,77,64,0.1); }
 
         .row-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
@@ -130,10 +132,26 @@
         .btn-save-as { background: var(--secondary-green); color: white; }
         .btn-save-as:hover { background: #00332a; transform: translateY(-2px); }
 
-        .btn-storage { background: #455a64; color: white; margin-bottom: 10px; }
+        .btn-storage {
+            background: #455a64; color: white; margin-bottom: 8px;
+            padding: 8px 12px; font-size: 0.8rem;
+        }
         .btn-storage:hover { background: #263238; }
+        .btn-storage svg { width: 16px; height: 16px; }
 
         .btn-action span { font-size: 0.75rem; font-weight: 400; opacity: 0.9; }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed; top: 20px; right: 20px;
+            background: #323232; color: white; padding: 12px 24px;
+            border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            display: flex; align-items: center; gap: 10px;
+            transform: translateY(-100px); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 10000; font-weight: 500;
+        }
+        .toast.show { transform: translateY(0); }
+        .toast-success { border-right: 4px solid #4caf50; }
 
         /* --- منطقة المعاينة (Preview) --- */
         .preview-area {
@@ -162,21 +180,21 @@
         /* الطبقة 1: الأمواج الناعمة الأصلية */
         .watermark-waves {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1414'%3E%3Cdefs%3E%3ClinearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237b0000' stop-opacity='0.015' /%3E%3Cstop offset='100%25' stop-color='%23004d40' stop-opacity='0.015' /%3E%3C/linearGradient%3E%3Cfilter id='softBlur'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='60'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23softBlur)' opacity='0.5'%3E%3Cpath d='M-200,450 Q250,150 500,450 T1200,450' fill='none' stroke='url(%23waveGrad1)' stroke-width='400'/%3E%3Cpath d='M-200,1050 Q300,750 600,1050 T1300,1050' fill='none' stroke='%23004d40' stroke-opacity='0.02' stroke-width='500'/%3E%3Cpath d='M-200,750 Q400,1100 1200,750' fill='none' stroke='%237b0000' stroke-opacity='0.015' stroke-width='350'/%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='1414'%3E%3Cdefs%3E%3ClinearGradient id='waveGrad1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%237b0000' stop-opacity='0.03' /%3E%3Cstop offset='100%25' stop-color='%23004d40' stop-opacity='0.03' /%3E%3C/linearGradient%3E%3Cfilter id='softBlur'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='60'/%3E%3C/filter%3E%3C/defs%3E%3Cg filter='url(%23softBlur)' opacity='0.6'%3E%3Cpath d='M-200,450 Q250,150 500,450 T1200,450' fill='none' stroke='url(%23waveGrad1)' stroke-width='400'/%3E%3Cpath d='M-200,1050 Q300,750 600,1050 T1300,1050' fill='none' stroke='%23004d40' stroke-opacity='0.04' stroke-width='500'/%3E%3Cpath d='M-200,750 Q400,1100 1200,750' fill='none' stroke='%237b0000' stroke-opacity='0.03' stroke-width='350'/%3E%3C/g%3E%3C/svg%3E");
             background-size: 100% 100%;
         }
 
         /* الطبقة 2: النص المتكرر (Syndicate Name Wave Pattern) */
         .watermark-text-pattern {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='150' opacity='0.02'%3E%3Ctext x='50%25' y='50%25' font-family='Tajawal, sans-serif' font-size='9' font-weight='800' fill='%237b0000' text-anchor='middle' transform='rotate(-25 200 75)'%3EINJURIES AND REHABILITATION SYNDICATE%3C/text%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='150' opacity='0.04'%3E%3Ctext x='50%25' y='50%25' font-family='Tajawal, sans-serif' font-size='9' font-weight='800' fill='%237b0000' text-anchor='middle' transform='rotate(-25 200 75)'%3EINJURIES AND REHABILITATION SYNDICATE%3C/text%3E%3C/svg%3E");
             background-repeat: repeat;
         }
 
         /* الطبقة 3: الخطوط الهندسية الدقيقة */
         .watermark-geometric-lines {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%23004d40' stroke-width='0.5' stroke-opacity='0.01'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='grid' width='100' height='100' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 100 0 L 0 0 0 100' fill='none' stroke='%23004d40' stroke-width='0.5' stroke-opacity='0.02'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)' /%3E%3C/svg%3E");
         }
 
         .custom-watermark-layer {
@@ -213,20 +231,41 @@
         }
 
         .header-text { width: 38%; }
-        .header-text.ar { text-align: right; font-family: 'Amiri', serif; font-size: 12.5pt; line-height: 1.4; }
-        .header-text.en { text-align: left; font-family: 'Cambria', 'Georgia', serif; font-size: 11.5pt; line-height: 1.4; direction: ltr; }
+        .header-text.ar {
+            text-align: right; font-family: 'Amiri', serif; font-size: 12.5pt; line-height: 1.4;
+            background: linear-gradient(to left, #111, #444);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .header-text.en {
+            text-align: left; font-family: 'Cambria', 'Georgia', serif; font-size: 11.5pt; line-height: 1.4; direction: ltr;
+            background: linear-gradient(to right, #111, #444);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
 
         .logo-area { width: 24%; text-align: center; align-self: center; }
         #logo-preview { max-width: 100px; max-height: 100px; object-fit: contain; }
 
         /* عنوان الوثيقة */
         .doc-title { text-align: center; margin-bottom: 15px; }
-        .doc-title h1 { margin: 0; color: var(--primary-dark); font-size: 28pt; font-family: 'Amiri', serif; font-weight: 700; letter-spacing: 0.5px; }
+        .doc-title h1 {
+            margin: 0;
+            font-size: 28pt; font-family: 'Amiri', serif; font-weight: 700; letter-spacing: 0.5px;
+            background: linear-gradient(135deg, #7b0000 0%, #111 50%, #004d40 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         .doc-title p { margin: 2px 0 0; font-size: 16pt; color: #555; font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px; }
 
         /* بيانات العضو الرئيسية */
         .member-name-zone { text-align: center; margin-bottom: 15px; position: relative; padding: 5px 0; }
-        #view-name-ar { font-size: 19pt; font-weight: 800; color: #000; font-family: 'Tajawal', sans-serif; }
+        #view-name-ar {
+            font-size: 19pt; font-weight: 800; font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(to right, #111 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
         #view-name-en { font-size: 13pt; color: #444; margin-top: 5px; font-family: 'Cambria', serif; font-weight: 400; font-style: italic; }
         .member-qual-zone { font-size: 10pt; color: #555; margin-top: 8px; font-weight: 500; }
 
@@ -275,7 +314,7 @@
         .signature-box small { font-size: 8.5pt; color: #555; }
         .electronic-signature {
             position: absolute;
-            bottom: 45px;
+            bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
             max-width: 150px;
@@ -287,7 +326,7 @@
         }
         .electronic-signature img { width: 100%; height: auto; filter: contrast(1.2) brightness(1.1) multiply(0.9); }
         .electronic-signature.text-sig {
-            bottom: 40px;
+            bottom: 32px;
             font-family: 'Amiri', serif;
             font-size: 22pt;
             color: #000080;
@@ -328,6 +367,11 @@
     </style>
 </head>
 <body class="system-locked">
+
+    <div id="toast" class="toast toast-success">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span id="toast-msg">تم الحفظ بنجاح</span>
+    </div>
 
     <div id="lock-overlay" class="lock-overlay">
         <div class="lock-card">
@@ -884,6 +928,12 @@
         function updateText(id, val) {
             const targetAr = document.getElementById('view-' + id + '-ar');
             const targetEn = document.getElementById('view-' + id + '-en');
+
+            // معالجة تاريخ الحصول على المؤهل (عرض السنة فقط)
+            if (id === 'qual-date' && val) {
+                const yearMatch = val.match(/\d{4}/);
+                if (yearMatch) val = yearMatch[0];
+            }
 
             // التحديث الخاص للكود
             if (id === 'code-no') {
@@ -1470,28 +1520,36 @@
             alert("تم حفظ المسودة بنجاح (محاكاة)\nDraft saved successfully (Simulated)");
         }
 
+        function showToast(msg, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.innerText = msg;
+            toast.className = `toast show toast-${type}`;
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
         async function deleteCurrentRecord() {
             const nid = document.getElementById('nid-no').value;
             if (!nid || nid.length !== 14) {
-                alert('يرجى إدخال الرقم القومي الصحيح للحذف (14 رقم).\nPlease enter valid 14-digit National ID.');
+                showToast('يرجى إدخال الرقم القومي الصحيح للحذف', 'error');
                 return;
             }
-            if (!confirm(`هل أنت متأكد من حذف السجل [${nid}]؟\nAre you sure you want to delete this record?`)) return;
+            if (!confirm(`هل أنت متأكد من حذف السجل [${nid}]؟`)) return;
 
             const idx = DATABASE.findIndex(r => r.nid === nid);
             if (idx !== -1) {
                 DATABASE.splice(idx, 1);
                 await saveToDatabase(DATABASE);
-                alert('تم الحذف بنجاح.\nDeleted successfully.');
+                showToast('تم الحذف بنجاح');
                 resetForm();
             } else {
-                alert('السجل غير موجود.\nRecord not found.');
+                showToast('السجل غير موجود', 'error');
             }
         }
 
         async function saveDocumentLocally() {
             if (!storageDirHandle) {
-                alert('يرجى تحديد مجلد التخزين أولاً.\nPlease select a storage folder first.');
+                showToast('يرجى تحديد مجلد التخزين أولاً', 'error');
                 return;
             }
 
@@ -1536,10 +1594,10 @@
                 // 2. تحديث الفهرس المركزي (JSON)
                 await saveToDatabase(formData);
 
-                console.log(`Record for ${formData.nid} saved and indexed.`);
+                showToast(`تم حفظ السجل ${formData.nid}`);
             } catch (err) {
                 console.error('Save failed:', err);
-                alert('فشل في حفظ السجل.');
+                showToast('فشل في حفظ السجل', 'error');
             }
         }
 
